@@ -45,27 +45,27 @@
 
 :root {
   --radius: 0.625rem;
-  --card: #1a1a1a; /* Dark gray for cards */
-  --card-foreground: #e0f7fa; /* vu-cyan */
+  --card: #1a1a1a;
+  --card-foreground: #e0f7fa;
   --popover: #1a1a1a;
   --popover-foreground: #e0f7fa;
-  --primary: #008fff; /* vu-blue */
-  --primary-foreground: #000000; /* vu-space */
-  --secondary: #2d2d2d; /* Darker gray */
+  --primary: #008fff;
+  --primary-foreground: #000000;
+  --secondary: #2d2d2d;
   --secondary-foreground: #e0f7fa;
   --muted: #2d2d2d;
-  --muted-foreground: #b0bec5; /* Lighter gray for muted text */
+  --muted-foreground: #b0bec5;
   --accent: #2d2d2d;
   --accent-foreground: #e0f7fa;
   --destructive: #ff4444;
-  --border: #444444; /* Dark border */
+  --border: #444444;
   --input: #444444;
-  --ring: #008fff; /* vu-blue */
-  --chart-1: #fffd42; /* vu-yellow */
-  --chart-2: #a020f0; /* vu-purple */
-  --chart-3: #ff00ff; /* vu-pink */
-  --chart-4: #00fdfc; /* vu-cyan */
-  --chart-5: #008fff; /* vu-blue */
+  --ring: #008fff;
+  --chart-1: #fffd42;
+  --chart-2: #a020f0;
+  --chart-3: #ff00ff;
+  --chart-4: #00fdfc;
+  --chart-5: #008fff;
   --sidebar: #1a1a1a;
   --sidebar-foreground: #e0f7fa;
   --sidebar-primary: #008fff;
@@ -74,14 +74,13 @@
   --sidebar-accent-foreground: #e0f7fa;
   --sidebar-border: #444444;
   --sidebar-ring: #008fff;
-  --background: #000000; /* vu-space */
-  --foreground: #e0f7fa; /* vu-cyan */
+  --background: #000000;
+  --foreground: #e0f7fa;
 }
 
-/* Force dark theme */
 .dark, :root {
-  --background: #000000; /* vu-space */
-  --foreground: #e0f7fa; /* vu-cyan */
+  --background: #000000;
+  --foreground: #e0f7fa;
   --card: #1a1a1a;
   --card-foreground: #e0f7fa;
   --popover: #1a1a1a;
@@ -150,6 +149,14 @@
   animation: twinkle 3s infinite;
 }
 
+/* Gradient Background Animation for Hero */
+.hero-gradient {
+  background: linear-gradient(45deg, #000000, #1a1a1a, #000000);
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
+}
+
+/* Animations */
 @keyframes twinkle {
   0%, 100% { opacity: 0.3; }
   50% { opacity: 0.6; }
@@ -160,6 +167,21 @@
   100% { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .animate-fadeIn {
   animation: fadeIn 1s ease-in-out forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
