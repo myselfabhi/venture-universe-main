@@ -8,7 +8,7 @@ export default function Newsletter() {
       <div className="px-4 md:px-8">
         <h2 className="text-2xl font-bold mb-4">Stay in Orbit with Venture Universe</h2>
         <div className="flex justify-center gap-4 max-w-md mx-auto">
-          <Input placeholder="Enter your email" className="text-vu-space" />
+          <Input placeholder="Enter your email" className="text-vu-space bg-[#1a1a1a] border-vu-blue" />
           <Button className="bg-vu-pink text-vu-space hover:bg-vu-yellow">Subscribe</Button>
         </div>
       </div>

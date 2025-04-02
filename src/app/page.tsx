@@ -14,20 +14,10 @@ export default async function Home() {
   return (
     <div className="space-y-12">
       <Hero backgroundImage={featuredItem?.url} />
-      {featuredItem && (
-        <div className="container mx-auto p-4">
-          <FeaturedStory featuredItem={featuredItem} />
-        </div>
-      )}
-      <div className="container mx-auto p-4">
-        <LatestNews newsItems={newsItems.slice(1)} />
-      </div>
-      <div className="container mx-auto p-4">
-        <RecentArticles />
-      </div>
-      <div className="container mx-auto p-4">
-        <ExploreMore />
-      </div>
+      {featuredItem && <FeaturedStory featuredItem={featuredItem} />}
+      <LatestNews newsItems={newsItems.slice(1)} />
+      <RecentArticles />
+      <ExploreMore />
       <Newsletter />
     </div>
   );

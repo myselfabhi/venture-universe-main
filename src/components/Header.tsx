@@ -17,29 +17,29 @@ export default function Header() {
           <h1 className="text-2xl font-bold drop-shadow-[0_0_5px_rgba(0,253,252,0.5)]">Venture Universe</h1>
         </div>
         <NavigationMenu>
-          <NavigationMenuList className="flex gap-4">
+          <NavigationMenuList className="flex gap-6">
             <NavigationMenuItem>
-              <NavigationMenuLink href="/" className="hover:text-vu-blue drop-shadow-[0_0_3px_rgba(0,253,252,0.3)]">
+              <NavigationMenuLink href="/" className="hover:text-vu-blue drop-shadow-[0_0_3px_rgba(0,253,252,0.3)] text-lg">
                 Home
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink href="/news" className="hover:text-vu-blue drop-shadow-[0_0_3px_rgba(0,253,252,0.3)]">
+              <NavigationMenuLink href="/news" className="hover:text-vu-blue drop-shadow-[0_0_3px_rgba(0,253,252,0.3)] text-lg">
                 News
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink href="/articles" className="hover:text-vu-blue drop-shadow-[0_0_3px_rgba(0,253,252,0.3)]">
+              <NavigationMenuLink href="/articles" className="hover:text-vu-blue drop-shadow-[0_0_3px_rgba(0,253,252,0.3)] text-lg">
                 Articles
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink href="/about" className="hover:text-vu-blue drop-shadow-[0_0_3px_rgba(0,253,252,0.3)]">
+              <NavigationMenuLink href="/about" className="hover:text-vu-blue drop-shadow-[0_0_3px_rgba(0,253,252,0.3)] text-lg">
                 About
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink href="/contact" className="hover:text-vu-blue drop-shadow-[0_0_3px_rgba(0,253,252,0.3)]">
+              <NavigationMenuLink href="/contact" className="hover:text-vu-blue drop-shadow-[0_0_3px_rgba(0,253,252,0.3)] text-lg">
                 Contact
               </NavigationMenuLink>
             </NavigationMenuItem>
