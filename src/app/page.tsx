@@ -8,15 +8,12 @@ import SpaceNews from "@/components/SpaceNews";
 
 export default async function Home() {
   let newsItems: ApodData[] = [];
-  let featuredItem: ApodData | null = null;
 
   try {
-    newsItems = await fetchApod(10); // Fetch 10 to ensure enough for 1 featured + 7-9 latest
-    featuredItem = newsItems[0] || null;
+    newsItems = await fetchApod(10); 
   } catch (error) {
     console.error("Failed to fetch APOD data in Home:", error);
     newsItems = [];
-    featuredItem = null;
   }
 
   return (
