@@ -7,6 +7,7 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import { ApodData } from "../lib/api";
+import Image from "next/image";
 
 export default function SpaceNews({ newsItems }: { newsItems: ApodData[] }) {
   return (
@@ -27,9 +28,11 @@ export default function SpaceNews({ newsItems }: { newsItems: ApodData[] }) {
                         {item.explanation.slice(0, 150) + "..."}
                       </CardDescription>
                       {item.url && (
-                        <img
+                        <Image
                           src={item.url}
                           alt={item.title}
+                          width={400} // Set a reasonable width
+                          height={160} // Set a reasonable height (h-40 is 160px)
                           className="w-full h-40 object-cover rounded-md"
                         />
                       )}

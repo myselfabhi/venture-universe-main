@@ -26,13 +26,13 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Column 2: Clorius Föturs */}
+            {/* Column 2: Clorius F&ouml;turs */}
             <div>
-              <h3 className="font-bold text-vu-purple mb-2">Clorius Föturs</h3>
+              <h3 className="font-bold text-vu-purple mb-2">Clorius F&ouml;turs</h3>
               <ul className="space-y-1">
                 <li>
                   <a href="#" className="text-vu-cyan hover:text-vu-yellow transition-colors duration-300">
-                    Contact Future's experts
+                    Contact Future&#39;s experts
                   </a>
                 </li>
                 <li>
@@ -43,9 +43,9 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Column 3: fm! üöbe */}
+            {/* Column 3: fm! &uuml;&ouml;be */}
             <div>
-              <h3 className="font-bold text-vu-purple mb-2">fm! üöbe</h3>
+              <h3 className="font-bold text-vu-purple mb-2">fm! &uuml;&ouml;be</h3>
               <ul className="space-y-1">
                 <li>
                   <a href="#" className="text-vu-cyan hover:text-vu-yellow transition-colors duration-300">
@@ -82,7 +82,7 @@ export default function Footer() {
               Space is part of Future US Inc, an international media group and leading digital publisher. Visit our corporate site.
             </p>
             <p className="mt-2 text-vu-cyan">
-              © {new Date().getFullYear()} Future US, Inc. Full 7th Floor, 130 West 42nd Street, New York, NY 10036.
+              &copy; {new Date().getFullYear()} Future US, Inc. Full 7th Floor, 130 West 42nd Street, New York, NY 10036.
             </p>
             <p className="mt-2 text-vu-cyan">
               <a href="#" className="hover:text-vu-yellow">https://www.space.com/25325-fermi-paradox.html</a>
