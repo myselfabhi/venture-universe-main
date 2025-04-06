@@ -12,8 +12,8 @@ export default async function Home() {
   let featuredItem: ApodData | null = null;
 
   try {
-    newsItems = await fetchApod(3); // Fetch 3 APOD entries
-    featuredItem = newsItems[0] || null; // First item as featured
+    newsItems = await fetchApod(3); 
+    featuredItem = newsItems[0] || null; 
   } catch (error) {
     console.error("Failed to fetch APOD data in Home:", error);
     newsItems = [];
@@ -22,7 +22,7 @@ export default async function Home() {
 
   return (
     <div className="space-y-12">
-      <Hero backgroundImage={featuredItem?.url} />
+      <Hero/>
       {featuredItem ? (
         <FeaturedStory featuredItem={featuredItem} />
       ) : (
