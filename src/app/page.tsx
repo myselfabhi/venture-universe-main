@@ -1,4 +1,4 @@
-// src/app/page.tsx
+import Header from "../components/Header";
 import Hero from "../components/Hero";
 import FeaturedStory from "../components/FeaturedStory";
 import LatestNews from "../components/LatestNews";
@@ -21,27 +21,30 @@ export default async function Home() {
   }
 
   return (
-    <div className="space-y-12">
-      <Hero/>
-      {featuredItem ? (
-        <FeaturedStory featuredItem={featuredItem} />
-      ) : (
-        <section className="bg-vu-space text-vu-cyan text-center">
-          <h2 className="text-2xl font-bold mb-4 text-vu-purple">Featured Story</h2>
-          <p className="text-vu-cyan">Unable to load featured story. Please try again later.</p>
-        </section>
-      )}
-      {newsItems.length > 1 ? (
-        <LatestNews newsItems={newsItems.slice(1)} />
-      ) : (
-        <section className="bg-vu-space text-vu-cyan text-center">
-          <h2 className="text-2xl font-bold mb-4 text-vu-purple">Latest Space News</h2>
-          <p className="text-vu-cyan">Unable to load latest news. Please try again later.</p>
-        </section>
-      )}
-      <RecentArticles />
-      <ExploreMore />
-      <Newsletter />
-    </div>
+    <>
+      <Header />
+      <div className="space-y-12 pt-16 mx-auto max-w-full"> 
+        <Hero />
+        {featuredItem ? (
+          <FeaturedStory featuredItem={featuredItem} />
+        ) : (
+          <section className="bg-vu-space text-vu-cyan text-center">
+            <h2 className="text-2xl font-bold mb-4 text-vu-purple">Featured Story</h2>
+            <p className="text-vu-cyan">Unable to load featured story. Please try again later.</p>
+          </section>
+        )}
+        {newsItems.length > 1 ? (
+          <LatestNews newsItems={newsItems.slice(1)} />
+        ) : (
+          <section className="bg-vu-space text-vu-cyan text-center">
+            <h2 className="text-2xl font-bold mb-4 text-vu-purple">Latest Space News</h2>
+            <p className="text-vu-cyan">Unable to load latest news. Please try again later.</p>
+          </section>
+        )}
+        <RecentArticles />
+        <ExploreMore />
+        <Newsletter />
+      </div>
+    </>
   );
 }

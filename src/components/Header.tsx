@@ -1,10 +1,9 @@
-// src/components/Header.tsx
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "./ui/navigation-menu";
 import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="bg-vu-space/20 backdrop-blur-md text-vu-cyan py-4 sticky top-0 z-50 border-b border-vu-blue/20">
+    <header className="fixed top-10 left-1/2 transform -translate-x-1/2 w-1/2 bg-vu-space/20 backdrop-blur-md text-vu-cyan py-4 z-50 shadow-[0_4px_6px_rgba(0,0,0,0.1)] border-b border-vu-blue/20 rounded-lg">
       <div className="flex justify-between items-center px-4 md:px-8">
         <div className="flex items-center gap-2">
           <Image
