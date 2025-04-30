@@ -2,99 +2,52 @@ import { FlipWords } from "./FlipWords";
 import { motion } from "motion/react";
 
 const HeroText = () => {
-  const words = ["Secure", "Modern", "Scalable"];
+  const words = [
+    "space news",
+    "cosmic discoveries",
+    "stellar insights",
+    "galactic events",
+    "insightful articles",
+  ];
   const variants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
   };
+
   return (
-    <div className="z-10 mt-20 text-center md:mt-40 md:text-left rounded-3xl bg-clip-text">
-      {/* Desktop View */}
-      <div className="flex-col hidden md:flex c-space">
-        <motion.h1
-          className="text-4xl font-medium"
-          variants={variants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 1 }}
-        >
-          Hi I'm Ali
-        </motion.h1>
-        <div className="flex flex-col items-start">
-          <motion.p
-            className="text-5xl font-medium text-neutral-300"
-            variants={variants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 1.2 }}
-          >
-            A Developer <br /> Dedicated to Crafting
-          </motion.p>
-          <motion.div
-            variants={variants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 1.5 }}
-          >
-            <FlipWords
-              words={words}
-              className="font-black text-white text-8xl"
-            />
-          </motion.div>
-          <motion.p
-            className="text-4xl font-medium text-neutral-300"
-            variants={variants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 1.8 }}
-          >
-            Web Solutions
-          </motion.p>
-        </div>
-      </div>
-      {/* Mobile View */}
-      <div className="flex- flex-col space-y-6 md:hidden">
-        <motion.p
-          className="text-4xl font-medium"
-          variants={variants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 1 }}
-        >
-          Hi,I'm Ali
-        </motion.p>
-        <div>
-          <motion.p
-            className="text-5xl font-black text-neutral-300"
-            variants={variants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 1.2 }}
-          >
-            Building
-          </motion.p>
-          <motion.div
-            variants={variants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 1.5 }}
-          >
-            <FlipWords
-              words={words}
-              className="font-bold text-white text-7xl"
-            />
-          </motion.div>
-          <motion.p
-            className="text-4xl font-black text-neutral300"
-            variants={variants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 1.8 }}
-          >
-            Web Applications
-          </motion.p>
-        </div>
-      </div>
+    <div className="absolute top-1/4 left-1/2 z-10 max-w-2xl -translate-x-1/2 rounded-2xl bg-white/10 p-6 backdrop-blur-md shadow-xl md:left-24 md:top-1/3 md:translate-x-0">
+      <motion.h1
+        className="text-4xl md:text-6xl font-extrabold text-white"
+        variants={variants}
+        initial="hidden"
+        animate="visible"
+        transition={{ delay: 0.6, duration: 0.6 }}
+      >
+        Venture Universe
+      </motion.h1>
+
+      <motion.p
+        className="mt-3 text-lg md:text-2xl text-neutral-300"
+        variants={variants}
+        initial="hidden"
+        animate="visible"
+        transition={{ delay: 0.9, duration: 0.6 }}
+      >
+        Your gateway to
+      </motion.p>
+
+      <motion.div
+        className="mt-2"
+        variants={variants}
+        initial="hidden"
+        animate="visible"
+        transition={{ delay: 1.2, duration: 0.6 }}
+      >
+        <FlipWords
+          words={words}
+          className="text-3xl md:text-5xl font-bold text-white"
+        />
+      </motion.div>
     </div>
   );
 };
