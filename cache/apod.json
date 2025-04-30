@@ -1,32 +1,100 @@
 {
   "data": [
     {
-      "date": "2007-06-22",
-      "explanation": "Ceres and Vesta are, respectively, only around 950 kilometers and 530 kilometers in diameter - about the size of Texas and Arizona.  But they are two of the largest of over 100,000 minor bodies orbiting in the main asteroid belt between Mars and Jupiter. These remarkably detailed Hubble Space Telescope images show brightness and color variations across the surface of the two small worlds. The variations could represent large scale surface features or areas of different compositon. The Hubble image data will help astronomers plan for a visit by the asteroid-hopping Dawn spacecraft, scheduled for launch on July 7 and intended to orbit first Vesta and then Ceres after a four year interplanetary cruise. Though Shakespeare might not have been impressed, nomenclature introduced by the International Astronomical Union in 2006 classifies nearly spherical Ceres as a dwarf planet.",
-      "hdurl": "https://apod.nasa.gov/apod/image/0706/ceresvesta_hst.jpg",
+      "copyright": "\nJuan Carlos Casado\n",
+      "date": "2004-11-14",
+      "explanation": "The 1999 Leonids Meteor Shower came to an impressive crescendo.  Observers in Europe observed a sharp peak in the number of meteors visible around 0210 UTC during the early morning hours of November 18.  Meteor counts then exceeded 1000 per hour - the minimum needed to define a true meteor storm.  At other times and from other locations around the world, observers typically reported respectable rates of between 30 and 100 meteors per hour.  The above photograph is a 20-minute exposure ending just before the main Leonids peak began.  Visible are at least five Leonids meteors streaking high above the Torre de la Guaita, an observation tower used during the 12th century in Girona, Spain.  This year's Leonids should peak twice on November 19th, but is predicted to be less impressive than in 1999.",
+      "hdurl": "https://apod.nasa.gov/apod/image/0411/leonids99_casado_big.jpg",
       "media_type": "image",
       "service_version": "v1",
-      "title": "Small Worlds Ceres and Vesta",
-      "url": "https://apod.nasa.gov/apod/image/0706/ceresvesta_hst720.jpg"
+      "title": "Leonids Above Torre de la Guaita",
+      "url": "https://apod.nasa.gov/apod/image/0411/leonids99_casado.jpg"
     },
     {
-      "date": "2014-01-15",
-      "explanation": "Few cosmic vistas excite the imagination like the Orion Nebula, an immense stellar nursery some 1,500 light-years away. This stunning false-color view spans about 40 light-years across the region, constructed using infrared data from the Spitzer Space Telescope. Compared to its visual wavelength appearance, the brightest portion of the nebula is likewise centered on Orion's young, massive, hot stars, known as the Trapezium Cluster. But the infrared image also detects the nebula's many protostars, still in the process of formation, seen here in red hues. In fact, red spots along the dark dusty filament to the left of the bright cluster include the protostar cataloged as HOPS 68, recently found to have crystals of the silicate mineral olivine within its protostellar envelope.",
-      "hdurl": "https://apod.nasa.gov/apod/image/1401/orion_spitzerLRot.jpg",
+      "date": "2001-11-29",
+      "explanation": "The active Sun has thrown a lot our way lately, including storms of particles streaming outward in the solar wind and clouds of plasma which triggered awesome auroral displays. Still, a growing body of intriguing observations from the LASCO instrument on board the space-based SOlar and Heliospheric Observatory (SOHO) indicates material also flows back toward the Sun, starting from over 2 million kilometers above its visible surface. Relatively hard to detect against the outflowing solar corona, a dark inflowing cloud's relative motion is tracked above in two highly processed images recorded an hour apart. The solar surface, graphically shown by the yellow quarter circle at the lower right, is blocked from view by a smooth occulting disk. Fighting against a solar wind outflow of about 120 kilometers per second the cloud seems to be moving inward at 50-100 kilometers per second. Occasionally appearing as often as once per hour, the clouds, seem to be dragged in by collapsing magnetic field loops rather than gravity alone. Researchers are now working to relate this surprising inflow to the solar wind and magnetic environment of the Sun.",
+      "hdurl": "https://apod.nasa.gov/apod/image/0111/coronalinflow_soho_big.jpg",
       "media_type": "image",
       "service_version": "v1",
-      "title": "Spitzer's Orion",
-      "url": "https://apod.nasa.gov/apod/image/1401/orion_spitzerR600h.jpg"
+      "title": "Coronal Inflow",
+      "url": "https://apod.nasa.gov/apod/image/0111/coronalinflow_soho.jpg"
     },
     {
-      "date": "1996-02-14",
-      "explanation": "Would the Rosette nebula by any other name look as sweet? The bland New General Catalog designation of NGC 2237 doesn't appear to diminish the appearance of the this flowery emission nebula. Inside the nebula lies an open cluster of bright young stars designated NGC 2244. These stars recently formed from the nebular material and their stellar \"wind\" has cleared a hole in the nebula's center, insulated by a layer of dust and hot gas. Ultraviolet light from the hot cluster stars causes the surrounding nebula to glow.",
-      "hdurl": "https://apod.nasa.gov/apod/image/rosette_zebu_big.gif",
+      "date": "2005-05-07",
+      "explanation": "NGC 3314 consists of two large spiral galaxies which just happen to almost exactly line-up. The foreground spiral is viewed nearly face-on, its pinwheel shape defined by young bright star clusters. But against the glow of the background galaxy, dark swirling lanes of interstellar dust are also seen to echo the face-on spiral's structure. The dust lanes are surprisingly pervasive, and this remarkable pair of overlapping galaxies is one of a small number of systems in which absorption of visible light can be used to directly explore the distribution of dust in distant spirals. NGC 3314 is about 140 million light-years away in the multi-headed constellation Hydra. This color composite was constructed from Hubble Space Telescope images made in 1999 and 2000.",
+      "hdurl": "https://apod.nasa.gov/apod/image/0505/ngc3314_keel_big.jpg",
       "media_type": "image",
       "service_version": "v1",
-      "title": "NGC 2237: The Rosette Nebula",
-      "url": "https://apod.nasa.gov/apod/image/rosette_zebu.gif"
+      "title": "NGC 3314: When Galaxies Overlap",
+      "url": "https://apod.nasa.gov/apod/image/0505/ngc3314_keel.jpg"
+    },
+    {
+      "date": "2006-07-29",
+      "explanation": "What do you call a group of black holes ... a flock, a brace, a swarm? Monitoring a region around the center of our Galaxy, astronomers have indeed found evidence for a surprisingly large number of variable x-ray sources - likely black holes or neutron stars in binary star systems - swarming around the Milky Way's own central supermassive black hole. Chandra Observatory combined x-ray image data from their monitoring program is shown above, with four variable sources circled and labeled A-D. While four sources may not make a swarm, these all lie within only three light-years of the central supermassive black hole known as Sgr A* (the bright source just above C). Their detection implies that a much larger concentration of black hole systems is present. Repeated gravitational interactions with other stars are thought to cause the black hole systems to spiral inward toward the Galactic Center region.",
+      "hdurl": "https://apod.nasa.gov/apod/image/0607/swarm_cxc_labelf.jpg",
+      "media_type": "image",
+      "service_version": "v1",
+      "title": "The Swarm",
+      "url": "https://apod.nasa.gov/apod/image/0607/swarm_cxc_labelc.jpg"
+    },
+    {
+      "date": "1999-01-23",
+      "explanation": "Girdling the second largest planet in the Solar System, Saturn's Rings are one of the most spectacular sights for earthbound telescopes. This image from the orbiting Hubble Space Telescope's STIS instrument, offers a striking view of another kind of ring around Saturn - pole encircling rings of ultraviolet aurora. Towering more than 1,000 miles above the cloud tops, these Saturnian auroral displays are analogous to Earth's. Energetic charged particles in the Solar Wind are funneled by the planet's magnetic field into polar regions where they interact with atmospheric gases. Following the ebb and flow of Saturn's aurora, researchers can remotely explore the planet's atmosphere and magnetic field. In this false color image, the dramatic red aurora identify emission from atomic hydrogen, while the more concentrated white areas are due to hydrogen molecules. In 2004, NASA plans to begin making close-up studies of the Saturnian system with the Cassini Spacecraft.",
+      "hdurl": "https://apod.nasa.gov/apod/image/9801/sataurora_hst_big.jpg",
+      "media_type": "image",
+      "service_version": "v1",
+      "title": "Saturnian Aurora",
+      "url": "https://apod.nasa.gov/apod/image/9801/sataurora_hst.jpg"
+    },
+    {
+      "copyright": "\nDavid Cortner\n",
+      "date": "2004-06-23",
+      "explanation": "The rare transit of Venus across the face of the Sun earlier this month was one of the better-photographed events in sky history.  Both scientific and artistic images have been flooding in from the areas that could see the transit: Europe and much of Asia, Africa, and North America.  Scientifically, solar photographers confirmed that the black drop effect is really better related to the viewing clarity of the camera or telescope than the atmosphere of Venus.  Artistically, images might be divided into several categories.  One type captures the transit in front of a highly detailed Sun.  Another category captures a double coincidence such as both Venus and an airplane simultaneously silhouetted, or Venus and the International Space Station in low Earth orbit. A third image type involves a fortuitous arrangement of interesting looking clouds, as shown by example in the above image taken from North Carolina, USA. There the distant orb of giant Venus might have been mistaken, at first glance, for a small but unusually circular cloud.",
+      "hdurl": "https://apod.nasa.gov/apod/image/0406/venustransit_cortner_big.jpg",
+      "media_type": "image",
+      "service_version": "v1",
+      "title": "A Picturesque Venus Transit",
+      "url": "https://apod.nasa.gov/apod/image/0406/venustransit_cortner.jpg"
+    },
+    {
+      "copyright": "\nDonald P. Waid\n(Waid Observatory)\n",
+      "date": "2014-10-08",
+      "explanation": "Star cluster NGC 6823 is slowly turning gas clouds into stars.  The center of the open cluster, visible on the upper right, formed only about two million years ago and is dominated in brightness by a host of bright young blue stars.  Some outer parts of the cluster, visible in the featured image's center as the stars and pillars of emission nebula NGC 6820, contain even younger stars.  The huge pillars of gas and dust likely get their elongated shape by erosion from hot radiation emitted from the brightest cluster stars.  Striking dark globules of gas and dust are also visible across the upper left of the featured image. Open star cluster NGC 6823 spans about 50 light years and lies about 6000 light years away toward the constellation of the Fox (Vulpecula).   APOD Wall Calendar: Nebulas and Star Clusters",
+      "hdurl": "https://apod.nasa.gov/apod/image/1410/ngc6823_waid_1092.jpg",
+      "media_type": "image",
+      "service_version": "v1",
+      "title": "NGC 6823: Cloud Sculpting Star Cluster",
+      "url": "https://apod.nasa.gov/apod/image/1410/ngc6823_waid_1080.jpg"
+    },
+    {
+      "date": "2004-12-31",
+      "explanation": "Landing on Mars in January, NASA's twin rovers Spirit and Opportunity have now each spent over 330 sols roving the martian surface. Still healthy and well in to extended missions, the golfcart sized robots have operated five times longer than planned. Ranging across the floor of Gusev crater, the Spirit rover has reached the Columbia Hills and journeyed nearly four kilometers. Half a planet away, Opportunity has spent much of its tour on Meridiani Planum exploring the 130 meter wide Endurance Crater. Opportunity recently returned this panoramic view of rock outcrops and steep crater walls. Both rovers have uncovered strong evidence that ancient salty oceans left their mark on the alluring Red Planet.",
+      "hdurl": "https://apod.nasa.gov/apod/image/0412/burnscliff_opp_fl.jpg",
+      "media_type": "image",
+      "service_version": "v1",
+      "title": "A Year of Mars Roving",
+      "url": "https://apod.nasa.gov/apod/image/0412/burnscliff_opp_cl.jpg"
+    },
+    {
+      "copyright": "\nGeorge C. Privon\n(U. Virginia) \n",
+      "date": "2010-02-23",
+      "explanation": "What created those rocket waves, and why did they destroy that sun dog? Close inspection of the above image shows not only a rocket rising near the center, but unusual air ripples around it and a colorful sundog to the far right. The rocket, carrying the Solar Dynamics Observatory (SDO), lifted off two weeks ago from Cape Canaveral, Florida, USA into a cold blue sky.  The SDO is designed to observe the Sun continuously over the next several years, exploring the Sun's atmosphere at high resolution and fast time scales. The air ripples -- seen about one minute after launch -- were unexpected, as was the sudden disappearance of the sundog after the ripples passed. Noticed and recorded by several onlookers, there has been much speculation about the origin of the ripples.  An ongoing discussion about them can be joined here in APOD's discussion board the Asterisk. A leading hypothesis holds that the ripples resulted from a sonic boom created as the rocket broke the sound barrier, which then jumbled a thin layer of ice crystals that were aligned to create the sundog. Lingering questions include why other rocket launches don't produce air ripples as noticeable, and why the ripples appeared more prominent above the rocket. If you know of images of any other aircraft or spacecraft that have produced similar air ripples, please post them to the discussion thread -- they may be help create a better understanding of the effect.",
+      "hdurl": "https://apod.nasa.gov/apod/image/1002/sdowaves_privon_big.jpg",
+      "media_type": "image",
+      "service_version": "v1",
+      "title": "Exceptional Rocket Waves Destroy Sun Dog",
+      "url": "https://apod.nasa.gov/apod/image/1002/sdowaves_privon.jpg"
+    },
+    {
+      "copyright": "\nDave Lane\n",
+      "date": "2014-08-27",
+      "explanation": "The Milky Way was not created by an evaporating lake. The colorful pool of water, about 10 meters across, is known as Silex Spring and is located in Yellowstone National Park in Wyoming, USA. Illuminated artificially, the colors are caused by layers of bacteria that grow in the hot spring. Steam rises off the spring, heated by a magma chamber deep underneath known as the Yellowstone hotspot.  Unrelated and far in the distance, the central band of our Milky Way Galaxy arches high overhead, a band lit by billions of stars.  The above picture is a 16-image panorama taken late last month.  If the Yellowstone hotspot causes another supervolcanic eruption as it did 640,000 years ago, a large part of North America would be affected.   Follow APOD on: Facebook,  Google Plus, or Twitter",
+      "hdurl": "https://apod.nasa.gov/apod/image/1408/mwyellowstone_lane_1800.jpg",
+      "media_type": "image",
+      "service_version": "v1",
+      "title": "Milky Way over Yellowstone",
+      "url": "https://apod.nasa.gov/apod/image/1408/mwyellowstone_lane_960.jpg"
     }
   ],
-  "timestamp": 1743921465464
+  "timestamp": 1746020065248
 }
