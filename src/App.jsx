@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "./sections/Navbar";
 import Hero from "./sections/Hero";
 import News from "./sections/News";
-import Testimonial from "./sections/Testimonial";
+import Articles from "./sections/Articles";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
 import Mission from "./sections/Mission";
@@ -16,7 +16,7 @@ const App = () => {
       <Mission />
       <News />
       <CosmicJourney />
-      <Testimonial />
+      <Articles />
       <Contact />
       <Footer/>
     </div>
