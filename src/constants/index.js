@@ -115,41 +115,108 @@ export const mySocials = [
   },
 ];
 
-export const experiences = [
+export const cosmicMilestones = [
   {
-    title: "Software Developer",
-    job: "Security & Defense Projects",
-    date: "2021-2023",
+    title: "Birth of Indian Space Program",
+    job: "Inception of INCOSPAR",
+    date: "1962",
     contents: [
-      "Enhanced application security and developed new features, adhering to standards set by the Passive Defense Organization and National Cyberspace Center.",
-      "Designed and implemented intuitive map interfaces using MapsUI, enhancing user experience and enabling seamless interactive map integration.",
-      "Developed applications for industrial automation, leveraging C++ and the Fatek API for PLC communication.",
-      "Enhanced responsiveness and usability of applications using Windows Forms and WPF frameworks.",
-      "Executed XML to SVG conversions using X-DOM, ensuring dynamic and efficient data visualization.",
+      "Dr. Vikram Sarabhai established INCOSPAR (Indian National Committee for Space Research) under the Department of Atomic Energy.",
+      "Set the foundation for India's space journey with the belief that space technology must serve society."
     ],
   },
   {
-    title: "Back-End Developer",
-    job: "Car Manufacture",
-    date: "2023-2024",
+    title: "Formation of ISRO",
+    job: "Indian Space Research Organisation",
+    date: "August 15, 1969",
     contents: [
-      "Engineered systems for large-scale data ingestion and analysis, ensuring efficient data processing and storage.",
-      "Developed back-end systems enabling vehicle-to-cloud communication for telemetry, diagnostics, and remote control:",
-      "✅ Implemented secure APIs, following ISO 26262 automotive safety standards.",
-      "✅ Ensured data privacy for customers and partners through industry-compliant protocols.",
-      "✅ Delivered remote features like over-the-air updates, real-time tracking, and remote start capabilities.",
+      "ISRO was founded to harness space technology for national development.",
+      "Dr. Vikram Sarabhai became the first chairman of ISRO.",
     ],
   },
   {
-    title: "Freelance Developer",
-    job: "Self-Employed",
-    date: "2025-Present",
+    title: "India’s First Satellite",
+    job: "Aryabhata Launch",
+    date: "April 19, 1975",
     contents: [
-      "Created a personal portfolio using Three.js, React, Vite, and WebAPI to showcase technical expertise.",
-      "Continuously enhancing technical skills and expanding expertise in modern web development and back-end technologies.",
+      "Launched from the Soviet Union, Aryabhata was India's first indigenously developed satellite.",
+      "Marked India’s entry into space-based research and communication."
+    ],
+  },
+  {
+    title: "First Launch Vehicle Success",
+    job: "SLV-3 Launch",
+    date: "July 18, 1980",
+    contents: [
+      "India launched Rohini-1 into orbit using SLV-3, developed indigenously under the leadership of Dr. A.P.J. Abdul Kalam.",
+      "Established India’s capability to build and launch satellites independently."
+    ],
+  },
+  {
+    title: "Remote Sensing Breakthrough",
+    job: "INSAT & IRS Programs",
+    date: "1980s–1990s",
+    contents: [
+      "Launched INSAT for meteorology and telecommunications, and IRS for earth observation.",
+      "Enabled forecasting, communication, agriculture planning, and disaster management."
+    ],
+  },
+  {
+    title: "Chandrayaan-1",
+    job: "India’s First Moon Mission",
+    date: "October 22, 2008",
+    contents: [
+      "Discovered water molecules on the Moon, revolutionizing lunar science.",
+      "Proved India’s capability in deep space exploration."
+    ],
+  },
+  {
+    title: "Mangalyaan (MOM)",
+    job: "First Interplanetary Mission",
+    date: "November 5, 2013",
+    contents: [
+      "India became the first Asian nation to reach Mars orbit and the first in the world to do so on its maiden attempt.",
+      "The mission was globally praised for its low cost and high innovation."
+    ],
+  },
+  {
+    title: "Chandrayaan-2",
+    job: "Second Moon Mission",
+    date: "July 22, 2019",
+    contents: [
+      "Included an orbiter, lander (Vikram), and rover (Pragyan); the orbiter continues successful operation.",
+      "Although the lander failed to soft-land, the mission yielded significant scientific data."
+    ],
+  },
+  {
+    title: "Chandrayaan-3",
+    job: "Moon South Pole Landing",
+    date: "August 23, 2023",
+    contents: [
+      "India became the first nation to land near the Moon's south pole.",
+      "The Vikram lander and Pragyan rover conducted successful in-situ analysis."
+    ],
+  },
+  {
+    title: "Aditya-L1",
+    job: "India’s First Solar Observatory",
+    date: "September 2, 2023",
+    contents: [
+      "Launched to study the Sun’s corona, solar flares, and solar wind effects on Earth.",
+      "Stationed at the L1 point to provide uninterrupted solar observations."
+    ],
+  },
+  {
+    title: "Gaganyaan (Planned)",
+    job: "India’s Crewed Space Mission",
+    date: "2025 (Expected)",
+    contents: [
+      "India’s first human spaceflight mission with a goal to send astronauts into low-Earth orbit.",
+      "Involves indigenous launch systems, astronaut training, and life-support technology."
     ],
   },
 ];
+
 export const reviews = [
   {
     name: "Jack",

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import NewsItem from "../components/NewsItem";
+import NewsItem from "../components/Project";
 import { nasaNews } from "../constants";
 import { motion, useMotionValue, useSpring } from "motion/react";
 import { Particles } from "../components/Particles";
@@ -59,21 +59,21 @@ const News = () => {
     <section
       onMouseMove={handleMouseMove}
       className="relative c-space section-spacing"
-      style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/nebula-background.png')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      // style={{
+      //   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/nebula-background.png')`,
+      //   backgroundSize: "cover",
+      //   backgroundPosition: "center",
+      // }}
     >
       {/* SVG Background */}
       <div
         className="absolute inset-0 -z-50"
-        style={{
-          backgroundImage: "url('/assets/space-background.svg')",
-          backgroundRepeat: "repeat",
-          backgroundSize: "200px 200px",
-          opacity: 0.3,
-        }}
+        // style={{
+        //   backgroundImage: "url('/assets/space-background.svg')",
+        //   backgroundRepeat: "repeat",
+        //   backgroundSize: "200px 200px",
+        //   opacity: 0.3,
+        // }}
       />
       {/* Particle Effect */}
       <Particles

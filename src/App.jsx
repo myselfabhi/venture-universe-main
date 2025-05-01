@@ -2,11 +2,11 @@ import React from "react";
 import Navbar from "./sections/Navbar";
 import Hero from "./sections/Hero";
 import News from "./sections/News";
-import Experiences from "./sections/Experiences";
 import Testimonial from "./sections/Testimonial";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
 import Mission from "./sections/Mission";
+import CosmicJourney from "./sections/CosmicJourney";
 
 const App = () => {
   return (
@@ -15,7 +15,7 @@ const App = () => {
       <Hero />
       <Mission />
       <News />
-      <Experiences />
+      <CosmicJourney />
       <Testimonial />
       <Contact />
       <Footer/>
