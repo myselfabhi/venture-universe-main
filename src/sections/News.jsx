@@ -59,11 +59,7 @@ const News = () => {
     <section
       onMouseMove={handleMouseMove}
       className="relative c-space section-spacing"
-      // style={{
-      //   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/nebula-background.png')`,
-      //   backgroundSize: "cover",
-      //   backgroundPosition: "center",
-      // }}
+      id="news"
     >
       {/* SVG Background */}
       <div

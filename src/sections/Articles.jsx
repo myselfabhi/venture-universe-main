@@ -12,6 +12,7 @@ const SpaceArticleCard = ({ img, author, title, excerpt, link }) => {
       target="_blank"
       rel="noopener noreferrer"
       className="no-underline"
+      id="article"
     >
       <figure
         className={twMerge(
