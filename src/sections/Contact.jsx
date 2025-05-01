@@ -30,13 +30,13 @@ const Contact = () => {
     try {
       console.log("From submitted:", formData);
       await emailjs.send(
-        "service_79b0nyj",
-        "template_17us8im",
+        "service_6vnam7b",
+        "template_lyp52jw",
         {
           from_name: formData.name,
-          to_name: "Ali",
+          to_name: "Venture Universe",
           from_email: formData.email,
-          to_email: "AliSanatiDev@gmail.com",
+          to_email: "venture.universe.yt@gmail.com",
           message: formData.message,
         },
         "pn-Bw_mS1_QQdofuV"
@@ -64,8 +64,8 @@ const Contact = () => {
         <div className="flex flex-col items-start w-full gap-5 mb-10">
           <h2 className="text-heading">Let's Talk</h2>
           <p className="font-normal text-neutral-400">
-            Whether you're loking to build a new website, improve your existing
-            platform, or bring a unique project to life, I'm here to help
+            Whether you're aiming to launch a stellar website, enhance your digital orbit, or bring a cosmic idea to life, Venture Universe is here to elevate your mission.
+
           </p>
         </div>
         <form className="w-full" onSubmit={handleSubmit}>
@@ -78,7 +78,7 @@ const Contact = () => {
               name="name"
               type="text"
               className="field-input field-input-focus"
-              placeholder="John Doe"
+              placeholder="Your name"
               autoComplete="name"
               value={formData.name}
               onChange={handleChange}
@@ -94,7 +94,7 @@ const Contact = () => {
               name="email"
               type="email"
               className="field-input field-input-focus"
-              placeholder="JohnDoe@email.com"
+              placeholder="@email.com"
               autoComplete="email"
               value={formData.email}
               onChange={handleChange}
