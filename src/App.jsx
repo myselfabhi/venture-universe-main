@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./sections/Navbar";
 import Hero from "./sections/Hero";
-import Projects from "./sections/Projects";
+import News from "./sections/News";
 import Experiences from "./sections/Experiences";
 import Testimonial from "./sections/Testimonial";
 import Contact from "./sections/Contact";
@@ -14,7 +14,7 @@ const App = () => {
       <Navbar />
       <Hero />
       <Mission />
-      <Projects />
+      <News />
       <Experiences />
       <Testimonial />
       <Contact />

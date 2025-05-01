@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ProjectDetails from "./ProjectDetails";
+import NewsDetails from "./NewsDetails";
 
-const Project = ({
+const NewsItem = ({
   title,
   description,
   subDescription,
@@ -36,7 +36,7 @@ const Project = ({
       </div>
       <div className="bg-gradient-to-r from-transparent via-neutral-700 to-transparent h-[1px] w-full" />
       {isHidden && (
-        <ProjectDetails
+        <NewsDetails
           title={title}
           description={description}
           subDescription={subDescription}
@@ -50,4 +50,4 @@ const Project = ({
   );
 };
 
-export default Project;
+export default NewsItem;
