@@ -99,7 +99,7 @@ const Mission = () => {
         {/* Grid 5 – ISRO and Indian Space Legacy */}
 
         <div className="grid-default-color grid-5">
-          <div className="z-10 w-[60%] mt-13">
+          <div className="z-10 w-[50%] md:mt-13">
           <p className="headtext">Dr. A.P.J. Abdul Kalam</p>
 <p className="subtext">
   👨‍🚀 Missile Man of India <br />
@@ -112,7 +112,7 @@ const Mission = () => {
           <div className="absolute inset-y-0 md:inset-y-9 w-full h-full start-[50%] md:scale-125">
             <img
               src="assets/APJ.jpg"
-              className="absolute scale-[1.75] -right-[2 rem] -top-[1rem] md:scale-[3] md:left-35 md:inset-y-10 lg:scale-[1.5]"
+              className="absolute scale-[1.75] -right-[2 rem] -top-[1rem] md:scale-[3] md:left-25 -z-10 md:inset-y-10 lg:scale-[1.5]"
             />
           </div>
         </div>
