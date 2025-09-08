@@ -2,7 +2,7 @@
 
 Venture Universe is your gateway to the cosmos, offering the latest space news, articles, and milestones in an immersive, space-themed experience. Dive into NASA’s Astronomy Picture of the Day (APOD), explore ISRO’s historic odyssey, and celebrate humanity’s journey through the stars—all wrapped in a stunning nebula-inspired design with dynamic animations and particle effects. 🚀
 🔗 Live Site: https://ventureuniverse.vercel.app/
-✨ Features
+✨ Features.
 
 Space News via NASA API: Fetches and displays the latest space articles and images from NASA’s APOD API in the News section.
 ISRO Odyssey Timeline: A scroll-animated timeline showcasing key milestones in ISRO’s space exploration journey, from Aryabhata to Chandrayaan-3.
@@ -125,3 +125,4 @@ GitHub Issues: Open an issue
 
 
 Explore the universe with Venture Universe—where every click takes you closer to the stars! 🌟
+
