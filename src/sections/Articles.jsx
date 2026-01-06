@@ -1,3 +1,5 @@
+"use client";
+
 import { twMerge } from "tailwind-merge";
 import Marquee from "../components/Marquee";
 import { spaceArticles } from "../constants";

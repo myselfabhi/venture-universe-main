@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "motion/react";
 import { X } from "lucide-react";
 import { Particles } from "../components/Particles";
@@ -89,7 +91,7 @@ const NewsDetails = ({
             className="inline-flex items-center gap-2 px-4 py-2 text-white bg-radial from-lavender to-royal rounded-md hover-animation"
           >
             View on NASA APOD
-            <img src="assets/arrow-right.svg" className="w-4" />
+            <img src="/assets/arrow-right.svg" className="w-4" />
           </a>
         </div>
       </motion.div>

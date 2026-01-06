@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import Alert from "../components/Alert";
@@ -29,9 +31,13 @@ const Contact = () => {
 
     try {
       console.log("From submitted:", formData);
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_6vnam7b";
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "template_lyp52jw";
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "pn-Bw_mS1_QQdofuV";
+      
       await emailjs.send(
-        "service_6vnam7b",
-        "template_lyp52jw",
+        serviceId,
+        templateId,
         {
           from_name: formData.name,
           to_name: "Venture Universe",
@@ -39,7 +45,7 @@ const Contact = () => {
           to_email: "venture.universe.yt@gmail.com",
           message: formData.message,
         },
-        "pn-Bw_mS1_QQdofuV"
+        publicKey
       );
       setIsLoading(false);
       setFormData({ name: "", email: "", message: "" });

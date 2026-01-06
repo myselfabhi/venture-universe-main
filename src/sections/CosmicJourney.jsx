@@ -1,3 +1,5 @@
+"use client";
+
 import { Timeline } from "../components/Timeline";
 import { cosmicMilestones } from "../constants";
 import { Particles } from "../components/Particles";
@@ -44,7 +46,7 @@ const CosmicJourney = () => {
           className="inline-flex items-center gap-2 px-4 py-2 mt-8 text-white bg-radial from-lavender to-royal rounded-md hover-animation"
         >
           Explore Space News
-          <img src="assets/arrow-right.svg" className="w-4" />
+          <img src="/assets/arrow-right.svg" className="w-4" />
         </a>
       </div>
     </section>

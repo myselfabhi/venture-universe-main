@@ -1,0 +1,35 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "react/prop-types": "off",
+    "no-undef": "off",
+    "react/no-unknown-property": [
+      "error",
+      {
+        "ignore": [
+          "dispose",
+          "rotation",
+          "position",
+          "scale",
+          "object",
+          "geometry",
+          "material",
+          "skeleton"
+        ]
+      }
+    ],
+    "no-unused-vars": [
+      "warn",
+      {
+        "varsIgnorePattern": "^React$"
+      }
+    ],
+    "react/no-unescaped-entities": "off",
+    "react-refresh/only-export-components": [
+      "warn",
+      {
+        "allowConstantExport": true
+      }
+    ]
+  }
+}

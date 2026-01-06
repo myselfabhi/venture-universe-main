@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef } from "react";
 import Card from "../components/Card";
 import { Globe } from "../components/globe";
@@ -18,7 +20,7 @@ const Mission = () => {
         {/* Grid 1 – Hero Intro */}
         <div className="flex items-end grid-default-color grid-1">
           <img
-            src="assets/image.jpg"
+            src="/assets/image.jpg"
             className="absolute scale-[1.75] -right-[5rem] -top-[1rem] md:scale-[3] md:left-50 md:inset-y-10 lg:scale-[2.5]"
           />
           <div className="z-10">
@@ -33,7 +35,7 @@ const Mission = () => {
         {/* Grid 2 – Space Brings Us Together */}
         <div className="rounded-2xl grid-2">
         <img
-            src="assets/card-2.jpg"
+            src="/assets/card-2.jpg"
             className="absolute   "
           />
           <div
@@ -111,7 +113,7 @@ const Mission = () => {
           </div>
           <div className="absolute inset-y-0 md:inset-y-9 w-full h-full start-[50%] md:scale-125">
             <img
-              src="assets/APJ.jpg"
+              src="/assets/APJ.jpg"
               className="absolute scale-[1.75] -right-[2 rem] -top-[1rem] md:scale-[3] md:left-25 -z-10 md:inset-y-10 lg:scale-[1.5]"
             />
           </div>

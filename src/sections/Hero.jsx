@@ -1,3 +1,5 @@
+"use client";
+
 import { Canvas, useFrame } from "@react-three/fiber";
 import HeroText from "../components/HeroText";
 import { Astronaut } from "../components/Astronaut";

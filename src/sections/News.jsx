@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import NewsItem from "../components/Project";
 import { nasaNews } from "../constants";
@@ -17,32 +19,54 @@ const News = () => {
   useEffect(() => {
     const fetchNews = async () => {
       setIsLoading(true);
+      setError(null);
       try {
         const response = await fetch(
-          `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=6`
+          `https://api.spaceflightnewsapi.net/v4/articles/?limit=6&ordering=-published_at`
         );
+        
+        if (!response.ok) {
+          throw new Error(`API error: ${response.status} ${response.statusText}`);
+        }
+        
         const data = await response.json();
-        // Filter for images only and map to match newsItems structure
-        const filteredData = data
-          .filter((item) => item.media_type === "image")
-          .map((item, index) => ({
-            id: index + 1,
+        
+        // Check if response has results array
+        if (!data.results || !Array.isArray(data.results)) {
+          throw new Error("Invalid API response format");
+        }
+        
+        // Map Spaceflight News API data to match newsItems structure
+        const mappedData = data.results
+          .filter((item) => item.image_url) // Only include items with images
+          .map((item) => ({
+            id: item.id,
             title: item.title,
-            description: item.explanation.slice(0, 100) + "...", // Truncate for preview
-            subDescription: [item.explanation, `Date: ${item.date}`],
+            description: item.summary?.slice(0, 100) + "..." || "No description available",
+            subDescription: [
+              item.summary || "No description available",
+              `Published: ${new Date(item.published_at).toLocaleDateString()}`,
+              `Source: ${item.news_site || "Unknown"}`,
+            ],
             href: item.url,
-            image: item.url,
+            image: item.image_url,
             tags: [
-              { id: 1, name: "Astronomy" },
-              { id: 2, name: "NASA" },
-              { id: 3, name: "Space" },
+              { id: 1, name: item.news_site || "Space News" },
+              { id: 2, name: "Space" },
+              { id: 3, name: item.authors?.[0]?.name || "Space News" },
             ],
           }));
-        setNewsItems(filteredData);
+        
+        if (mappedData.length > 0) {
+          setNewsItems(mappedData);
+        } else {
+          throw new Error("No articles with images found in API response");
+        }
       } catch (err) {
-        console.error("Error fetching APOD data:", err);
-        setError("Failed to load news. Using fallback data.");
+        console.error("Error fetching space news:", err);
+        setError(`Failed to load news: ${err.message}. Using fallback data.`);
         // Fallback to mock data if API fails
+        setNewsItems(nasaNews);
       } finally {
         setIsLoading(false);
       }
