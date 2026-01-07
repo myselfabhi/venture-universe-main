@@ -15,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${funnelDisplay.variable} font-sans`}>
+      <body className={funnelDisplay.variable} style={{ fontFamily: 'var(--font-funnel-display), "Funnel Display", sans-serif' }}>
         {children}
       </body>
     </html>

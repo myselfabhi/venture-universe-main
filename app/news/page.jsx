@@ -9,10 +9,12 @@ export const metadata = {
 
 export default function NewsPage() {
   return (
-    <div className="container mx-auto max-w-7xl">
+    <>
       <Navbar />
-      <News />
-      <Footer />
-    </div>
+      <div className="container mx-auto max-w-7xl">
+        <News />
+        <Footer />
+      </div>
+    </>
   );
 }

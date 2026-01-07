@@ -24,12 +24,6 @@
         "varsIgnorePattern": "^React$"
       }
     ],
-    "react/no-unescaped-entities": "off",
-    "react-refresh/only-export-components": [
-      "warn",
-      {
-        "allowConstantExport": true
-      }
-    ]
+    "react/no-unescaped-entities": "off"
   }
 }

@@ -9,10 +9,12 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="container mx-auto max-w-7xl">
+    <>
       <Navbar />
-      <Contact />
-      <Footer />
-    </div>
+      <div className="container mx-auto max-w-7xl">
+        <Contact />
+        <Footer />
+      </div>
+    </>
   );
 }

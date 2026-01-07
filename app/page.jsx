@@ -5,11 +5,13 @@ import Footer from "../src/sections/Footer";
 
 export default function Home() {
   return (
-    <div className="container mx-auto max-w-7xl">
+    <>
       <Navbar />
-      <Hero />
-      <Mission />
-      <Footer />
-    </div>
+      <div className="container mx-auto max-w-7xl">
+        <Hero />
+        <Mission />
+        <Footer />
+      </div>
+    </>
   );
 }

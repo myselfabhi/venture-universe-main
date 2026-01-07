@@ -9,10 +9,12 @@ export const metadata = {
 
 export default function ISROPage() {
   return (
-    <div className="container mx-auto max-w-7xl">
+    <>
       <Navbar />
-      <CosmicJourney />
-      <Footer />
-    </div>
+      <div className="container mx-auto max-w-7xl">
+        <CosmicJourney />
+        <Footer />
+      </div>
+    </>
   );
 }

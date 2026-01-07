@@ -33,7 +33,7 @@ const CosmicJourney = () => {
         }}
       />
 
-      <div className="w-full mt-100">
+      <div className="w-full pt-20">
         <h2 className="text-5xl">ISRO Odyssey</h2>
         <p className="text-neutral-400 ">
           From humble beginnings to lunar and interplanetary missions, witness ISRO’s historic milestones with Venture Universe.
