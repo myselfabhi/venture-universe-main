@@ -18,7 +18,7 @@ function Navigation() {
         </Link>
       </li>
       <li className="nav-li">
-        <Link className="nav-link" href="/#mission">
+        <Link className="nav-link" href="/missions">
           Missions
         </Link>
       </li>

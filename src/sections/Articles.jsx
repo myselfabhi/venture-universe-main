@@ -46,7 +46,7 @@ const SpaceArticleCard = ({ img, author, title, excerpt, link }) => {
 
 export default function FamousArticlesSection() {
   return (
-    <div className="items-start mt-25 md:mt-35 c-space">
+    <section className="c-space section-spacing">
       <h2 className="text-heading">Famous Articles from Great Space People</h2>
       <div className="relative flex flex-col items-center justify-center w-full mt-12 overflow-hidden">
         <Marquee pauseOnHover className="[--duration:20s]">
@@ -62,6 +62,6 @@ export default function FamousArticlesSection() {
         <div className="absolute inset-y-0 left-0 w-1/4 pointer-events-none bg-gradient-to-r from-primary" />
         <div className="absolute inset-y-0 right-0 w-1/4 pointer-events-none bg-gradient-to-l from-primary" />
       </div>
-    </div>
+    </section>
   );
 }
