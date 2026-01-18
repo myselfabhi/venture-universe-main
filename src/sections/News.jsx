@@ -28,12 +28,10 @@ const News = () => {
       setIsLoading(true);
       setError(null);
       try {
-        // Fetch initial batch - Spaceflight News API aggregates from 100+ sources
-        // Sources include: NASA, ESA, Space.com, Reuters, SpaceNews, Universe Today, and more
+        // Use internal API route with 10-minute caching
+        // Spaceflight News API aggregates from 100+ sources
         // We'll load 50 articles and paginate them client-side
-        const response = await fetch(
-          `https://api.spaceflightnewsapi.net/v4/articles/?limit=50&ordering=-published_at`
-        );
+        const response = await fetch('/api/news?limit=50&ordering=-published_at');
         
         if (!response.ok) {
           throw new Error(`API error: ${response.status} ${response.statusText}`);

@@ -12,9 +12,8 @@ const FeaturedNews = () => {
   useEffect(() => {
     const fetchLatestNews = async () => {
       try {
-        const response = await fetch(
-          `https://api.spaceflightnewsapi.net/v4/articles/?limit=3&ordering=-published_at`
-        );
+        // Use internal API route with 10-minute caching
+        const response = await fetch('/api/news?limit=3&ordering=-published_at');
         
         if (response.ok) {
           const data = await response.json();

@@ -12,11 +12,8 @@ const APODFeatured = () => {
   useEffect(() => {
     const fetchAPOD = async () => {
       try {
-        // NASA APOD API - works without API key for demo purposes
-        // For production, you'd use: `https://api.nasa.gov/planetary/apod?api_key=YOUR_KEY`
-        const response = await fetch(
-          `https://api.nasa.gov/planetary/apod?api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY || 'DEMO_KEY'}`
-        );
+        // Use internal API route with 24-hour caching
+        const response = await fetch('/api/apod');
         
         if (!response.ok) {
           throw new Error(`Failed to fetch APOD: ${response.status}`);

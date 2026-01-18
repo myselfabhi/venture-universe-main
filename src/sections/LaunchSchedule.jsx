@@ -15,10 +15,8 @@ const LaunchSchedule = () => {
   useEffect(() => {
     const fetchLaunches = async () => {
       try {
-        // Fetch more launches (50 instead of 5)
-        const response = await fetch(
-          `https://lldev.thespacedevs.com/2.2.0/launch/upcoming/?limit=50&ordering=net`
-        );
+        // Use internal API route with 60-minute caching
+        const response = await fetch('/api/launches?limit=50&ordering=net');
         
         if (!response.ok) {
           throw new Error(`Failed to fetch launches: ${response.status}`);

@@ -14,11 +14,8 @@ const UpcomingLaunches = () => {
   useEffect(() => {
     const fetchLaunches = async () => {
       try {
-        // LaunchLibrary 2 API - free, no API key required
-        // Fetches next 5 upcoming launches
-        const response = await fetch(
-          `https://lldev.thespacedevs.com/2.2.0/launch/upcoming/?limit=5&ordering=net`
-        );
+        // Use internal API route with 60-minute caching
+        const response = await fetch('/api/launches?limit=5&ordering=net');
         
         if (!response.ok) {
           throw new Error(`Failed to fetch launches: ${response.status}`);
