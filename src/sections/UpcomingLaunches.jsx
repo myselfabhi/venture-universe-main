@@ -96,7 +96,7 @@ const UpcomingLaunches = () => {
 
   if (isLoading) {
     return (
-      <section className="c-space section-spacing">
+      <section className="c-space py-12 md:py-16">
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
             <Rocket className="w-6 h-6 text-royal" />
@@ -113,7 +113,7 @@ const UpcomingLaunches = () => {
   }
 
   return (
-    <section className="c-space section-spacing">
+    <section className="c-space py-12 md:py-16">
       <div className="flex items-center justify-between mb-8">
         <div>
           <div className="flex items-center gap-3 mb-2">

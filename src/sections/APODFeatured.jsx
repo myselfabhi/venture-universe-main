@@ -51,7 +51,7 @@ const APODFeatured = () => {
 
   if (isLoading) {
     return (
-      <section className="c-space section-spacing">
+      <section className="c-space py-12 md:py-16">
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
             <Sparkles className="w-6 h-6 text-lavender" />
@@ -81,7 +81,7 @@ const APODFeatured = () => {
     : apodData.explanation;
 
   return (
-    <section className="c-space section-spacing">
+    <section className="c-space py-12 md:py-16">
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
           <Sparkles className="w-6 h-6 text-lavender" />

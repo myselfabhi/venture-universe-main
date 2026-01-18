@@ -46,7 +46,7 @@ const FeaturedNews = () => {
 
   if (isLoading) {
     return (
-      <section className="c-space section-spacing">
+      <section className="c-space py-12 md:py-16">
         <div className="flex items-center justify-between mb-8">
           <div>
             <h2 className="text-heading">Latest Space News</h2>
@@ -63,7 +63,7 @@ const FeaturedNews = () => {
   }
 
   return (
-    <section className="c-space section-spacing">
+    <section className="c-space py-12 md:py-16">
       <div className="flex items-center justify-between mb-8">
         <div>
           <h2 className="text-heading">Latest Space News</h2>

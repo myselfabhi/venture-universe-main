@@ -45,7 +45,7 @@ const QuickAccess = () => {
   ];
 
   return (
-    <section className="c-space section-spacing">
+    <section className="c-space py-12 md:py-16">
       <div className="mb-8">
         <h2 className="text-heading">Explore the Cosmos</h2>
         <p className="mt-2 text-neutral-400">Dive into space news, missions, and discoveries</p>
