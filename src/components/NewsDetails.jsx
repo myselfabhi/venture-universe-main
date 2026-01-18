@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
-import { X } from "lucide-react";
+import { X, Share2, Twitter, Facebook, Link2, Copy, Check } from "lucide-react";
+import { useState } from "react";
 import { Particles } from "../components/Particles";
 
 const NewsDetails = ({
@@ -13,6 +14,49 @@ const NewsDetails = ({
   href,
   closeModal,
 }) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleShare = async (platform) => {
+    const shareText = `${title} - Venture Universe`;
+    const shareUrl = href;
+
+    switch (platform) {
+      case "twitter":
+        window.open(
+          `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`,
+          "_blank"
+        );
+        break;
+      case "facebook":
+        window.open(
+          `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+          "_blank"
+        );
+        break;
+      case "copy":
+        try {
+          await navigator.clipboard.writeText(shareUrl);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+          console.error("Failed to copy:", err);
+        }
+        break;
+      case "native":
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: shareText,
+              text: description,
+              url: shareUrl,
+            });
+          } catch (err) {
+            // User cancelled or error
+          }
+        }
+        break;
+    }
+  };
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
       <motion.div
@@ -84,14 +128,65 @@ const NewsDetails = ({
               </span>
             ))}
           </div>
+
+          {/* Share Buttons */}
+          <div className="mb-6">
+            <p className="mb-3 text-sm text-neutral-400">Share this article:</p>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => handleShare("twitter")}
+                className="flex items-center gap-2 px-4 py-2 text-sm text-white transition-colors rounded-lg bg-white/10 hover:bg-blue-500/20 hover-animation"
+                aria-label="Share on Twitter"
+              >
+                <Twitter className="w-4 h-4" />
+                Twitter
+              </button>
+              <button
+                onClick={() => handleShare("facebook")}
+                className="flex items-center gap-2 px-4 py-2 text-sm text-white transition-colors rounded-lg bg-white/10 hover:bg-blue-600/20 hover-animation"
+                aria-label="Share on Facebook"
+              >
+                <Facebook className="w-4 h-4" />
+                Facebook
+              </button>
+              {typeof window !== "undefined" && navigator.share && (
+                <button
+                  onClick={() => handleShare("native")}
+                  className="flex items-center gap-2 px-4 py-2 text-sm text-white transition-colors rounded-lg bg-white/10 hover:bg-white/20 hover-animation"
+                  aria-label="Share via native share"
+                >
+                  <Share2 className="w-4 h-4" />
+                  Share
+                </button>
+              )}
+              <button
+                onClick={() => handleShare("copy")}
+                className="flex items-center gap-2 px-4 py-2 text-sm text-white transition-colors rounded-lg bg-white/10 hover:bg-white/20 hover-animation"
+                aria-label="Copy link"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-4 h-4" />
+                    Copied!
+                  </>
+                ) : (
+                  <>
+                    <Link2 className="w-4 h-4" />
+                    Copy Link
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
           <a
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 text-white bg-radial from-lavender to-royal rounded-md hover-animation"
+            className="inline-flex items-center gap-2 px-4 py-2 text-white bg-gradient-to-r from-lavender to-royal rounded-md hover-animation"
           >
-            View on NASA APOD
-            <img src="/assets/arrow-right.svg" className="w-4" />
+            Read Full Article
+            <img src="/assets/arrow-right.svg" className="w-4" alt="arrow" />
           </a>
         </div>
       </motion.div>
