@@ -50,6 +50,30 @@ const HeroText = () => {
           className="text-3xl md:text-5xl font-bold text-white"
         />
       </motion.div>
+      
+      <motion.div
+        className="flex flex-col gap-4 mt-8 sm:flex-row"
+        variants={variants}
+        initial="hidden"
+        animate="visible"
+        transition={{ delay: 1.5, duration: 0.6 }}
+      >
+        <a
+          href="/news"
+          className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium text-white transition-colors rounded-lg bg-gradient-to-r from-royal to-lavender hover:from-lavender hover:to-royal hover-animation"
+        >
+          Explore Latest News
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+        <a
+          href="/missions"
+          className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium text-white transition-colors rounded-lg bg-white/10 hover:bg-white/20 hover-animation"
+        >
+          Discover Missions
+        </a>
+      </motion.div>
     </div>
   );
 };
