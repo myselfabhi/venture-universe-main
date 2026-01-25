@@ -179,8 +179,8 @@ const UpcomingLaunches = () => {
                 </div>
               )}
 
-              {/* Image or Rocket Icon */}
-              <div className="relative h-48 overflow-hidden bg-gradient-to-br from-royal to-lavender">
+              {/* Image or Enhanced Placeholder */}
+              <div className="relative h-48 overflow-hidden bg-gradient-to-br from-royal via-lavender to-indigo">
                 {launch.image && !failedImages.has(launch.id) ? (
                   <img
                     src={launch.image}
@@ -192,9 +192,56 @@ const UpcomingLaunches = () => {
                     }}
                   />
                 ) : (
-                  <div className="flex items-center justify-center w-full h-full">
+                  <div className="flex flex-col items-center justify-center w-full h-full p-4">
+                    {/* Animated Rocket Icon */}
+                    <motion.div
+                      animate={{ 
+                        y: [0, -10, 0],
+                        rotate: [0, 5, -5, 0]
+                      }}
+                      transition={{ 
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                      className="mb-3"
+                    >
+                      <Rocket className="w-20 h-20 text-white/60" />
+                    </motion.div>
+                    
+                    {/* Launch Name or Agency */}
                     <div className="text-center">
-                      <Rocket className="w-16 h-16 text-white/40 mx-auto mb-2" />
+                      <p className="text-sm font-semibold text-white/80 line-clamp-2 mb-1">
+                        {launch.name.split('|')[0].trim()}
+                      </p>
+                      {launch.agency && launch.agency !== 'Unknown Agency' && (
+                        <p className="text-xs text-white/60">
+                          {launch.agency}
+                        </p>
+                      )}
+                    </div>
+                    
+                    {/* Decorative Stars */}
+                    <div className="absolute inset-0 overflow-hidden">
+                      {[...Array(6)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          className="absolute w-1 h-1 bg-white rounded-full"
+                          style={{
+                            left: `${20 + i * 15}%`,
+                            top: `${15 + (i % 3) * 30}%`,
+                          }}
+                          animate={{
+                            opacity: [0.3, 0.8, 0.3],
+                            scale: [1, 1.5, 1],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            delay: i * 0.3,
+                          }}
+                        />
+                      ))}
                     </div>
                   </div>
                 )}
