@@ -18,8 +18,10 @@ import {
   BookOpen,
   Quote
 } from "lucide-react";
+import { useDebounce } from "../hooks/useDebounce";
+import { highlightSearchTerm, searchItems } from "../utils/searchUtils";
 
-const ArticleCard = ({ article }) => {
+const ArticleCard = ({ article, searchQuery }) => {
   const { img, author, title, excerpt, link, category, readingTime } = article;
   const [imageFailed, setImageFailed] = useState(false);
 
@@ -107,12 +109,12 @@ const ArticleCard = ({ article }) => {
 
             {/* Article Title */}
             <h4 className="text-lg md:text-xl font-bold text-white mb-2 leading-tight group-hover:text-lavender transition-colors duration-300 line-clamp-2">
-              {title}
+              {searchQuery ? highlightSearchTerm(title, searchQuery) : title}
             </h4>
 
             {/* Excerpt */}
             <p className="text-xs md:text-sm text-neutral-400 mb-3 line-clamp-2 leading-relaxed">
-              {excerpt}
+              {searchQuery ? highlightSearchTerm(excerpt, searchQuery) : excerpt}
             </p>
 
             {/* Footer */}
@@ -251,6 +253,7 @@ export default function FamousArticlesSection() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
   const categories = useMemo(() => {
     const cats = [...new Set(spaceArticles.map(article => article.category))];
@@ -281,18 +284,16 @@ export default function FamousArticlesSection() {
       );
     }
 
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(article =>
-        article.title.toLowerCase().includes(query) ||
-        article.author.toLowerCase().includes(query) ||
-        article.excerpt.toLowerCase().includes(query) ||
-        article.category?.toLowerCase().includes(query)
+    if (debouncedSearchQuery.trim()) {
+      filtered = searchItems(
+        filtered,
+        debouncedSearchQuery,
+        ['title', 'author', 'excerpt', 'category']
       );
     }
 
     return filtered;
-  }, [searchQuery, selectedCategory, allArticles]);
+  }, [debouncedSearchQuery, selectedCategory, allArticles]);
 
   const displayedArticles = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -305,7 +306,7 @@ export default function FamousArticlesSection() {
   // Reset to page 1 when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchQuery, selectedCategory]);
+  }, [debouncedSearchQuery, selectedCategory]);
 
   return (
     <section className="relative c-space section-spacing">
@@ -405,7 +406,7 @@ export default function FamousArticlesSection() {
           </div>
         </div>
 
-        {(searchQuery || selectedCategory !== "all") && (
+        {(debouncedSearchQuery || selectedCategory !== "all") && (
           <div className="flex items-center gap-2">
             <button
               onClick={() => {
@@ -435,7 +436,7 @@ export default function FamousArticlesSection() {
           <BookOpen className="w-16 h-16 text-neutral-600 mx-auto mb-4" />
           <p className="text-neutral-400 text-lg mb-2">No articles found</p>
           <p className="text-neutral-500 text-sm mb-6">
-            {searchQuery || selectedCategory !== "all"
+            {debouncedSearchQuery || selectedCategory !== "all"
               ? "Try adjusting your search or filters"
               : "Check back later for new articles"
             }
@@ -466,6 +467,7 @@ export default function FamousArticlesSection() {
                 <ArticleCard
                   key={article.id}
                   article={article}
+                  searchQuery={debouncedSearchQuery}
                 />
               ))}
             </AnimatePresence>

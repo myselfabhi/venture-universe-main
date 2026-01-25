@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "motion/react";
 import { Particles } from "../components/Particles";
 import NewsDetails from "../components/NewsDetails";
 import { Search, Filter, X, Clock, ExternalLink, Newspaper, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
+import { useDebounce } from "../hooks/useDebounce";
+import { highlightSearchTerm, searchItems } from "../utils/searchUtils";
 
 const News = () => {
   const [newsItems, setNewsItems] = useState([]);
@@ -18,6 +20,7 @@ const News = () => {
   const [selectedNews, setSelectedNews] = useState(null);
   const [failedImages, setFailedImages] = useState(new Set());
   const itemsPerPage = 6;
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -78,7 +81,7 @@ const News = () => {
     fetchNews();
   }, []);
 
-  // Filter and search logic
+  // Filter and search logic with debouncing
   useEffect(() => {
     let filtered = [...newsItems];
 
@@ -88,19 +91,17 @@ const News = () => {
       );
     }
 
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(
-        (item) =>
-          item.title.toLowerCase().includes(query) ||
-          item.description.toLowerCase().includes(query) ||
-          item.tags.some((tag) => tag.name.toLowerCase().includes(query))
+    if (debouncedSearchQuery.trim()) {
+      filtered = searchItems(
+        filtered,
+        debouncedSearchQuery,
+        ['title', 'description', 'excerpt']
       );
     }
 
     setFilteredNews(filtered);
     setCurrentPage(1);
-  }, [searchQuery, selectedSource, newsItems]);
+  }, [debouncedSearchQuery, selectedSource, newsItems]);
 
   // Pagination logic
   useEffect(() => {
@@ -217,7 +218,7 @@ const News = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          {searchQuery || selectedSource !== "all" 
+          {debouncedSearchQuery || selectedSource !== "all" 
             ? `Found ${filteredNews.length} article${filteredNews.length !== 1 ? 's' : ''}` 
             : `Showing ${filteredNews.length} articles`
           }
@@ -376,11 +377,11 @@ const News = () => {
                 {/* Content */}
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-lavender transition-colors duration-300">
-                    {news.title}
+                    {debouncedSearchQuery ? highlightSearchTerm(news.title, debouncedSearchQuery) : news.title}
                   </h3>
                   
                   <p className="text-sm text-neutral-400 mb-4 line-clamp-2">
-                    {news.excerpt}
+                    {debouncedSearchQuery ? highlightSearchTerm(news.excerpt, debouncedSearchQuery) : news.excerpt}
                   </p>
 
                   {/* Metadata */}
