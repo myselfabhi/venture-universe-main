@@ -23,6 +23,11 @@ body {
   @apply min-h-screen pt-20 md:pt-24;
 }
 
+/* Navbar spacing adjustment for new navbar height */
+.navbar-spacing {
+  @apply pt-16 md:pt-20;
+}
+
 .text-heading {
   @apply font-bold text-3xl md:text-4xl;
 }
