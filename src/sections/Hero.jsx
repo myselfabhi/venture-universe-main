@@ -7,13 +7,15 @@ import { Float } from "@react-three/drei";
 import { useMediaQuery } from "react-responsive";
 import { easing } from "maath";
 import { Suspense } from "react";
+import { motion } from "motion/react";
+import { ArrowDown } from "lucide-react";
 import Loader from "../components/Loader";
 import ParallaxBackground from "../components/parallaxBackground";
 
 const Hero = () => {
   const isMobile = useMediaQuery({ maxWidth: 853 });
   return (
-    <section className="flex items-start justify-center min-h-screen overflow-hidden md:items-start md:justify-start c-space">
+    <section className="relative flex items-start justify-center min-h-screen overflow-hidden md:items-start md:justify-start c-space">
       <HeroText />
       <ParallaxBackground />
       <figure
@@ -32,6 +34,25 @@ const Hero = () => {
           </Suspense>
         </Canvas>
       </figure>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 md:gap-2 text-neutral-400 hover:text-white transition-colors cursor-pointer touch-manipulation"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.5 }}
+        onClick={() => {
+          window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+        }}
+      >
+        <span className="text-xs md:text-sm font-medium">Discover More</span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          <ArrowDown className="w-5 h-5 md:w-6 md:h-6" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
