@@ -1,12 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { Search, X, Clock, BookOpen, Rocket, ArrowRight } from "lucide-react";
-import { useDebounce } from "../../src/hooks/useDebounce";
-import { searchItems } from "../../src/utils/searchUtils";
+import { usePathname } from "next/navigation";
+import { X } from "lucide-react";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -76,13 +74,6 @@ function Navigation({ onLinkClick, isMobile = false }) {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState({ news: [], articles: [], launches: [] });
-  const [isSearching, setIsSearching] = useState(false);
-  const searchInputRef = useRef(null);
-  const router = useRouter();
-  const debouncedQuery = useDebounce(searchQuery, 300);
 
   // Handle scroll detection
   useEffect(() => {
@@ -94,101 +85,6 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Keyboard shortcut (Ctrl+K / Cmd+K)
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        setShowSearch(true);
-      }
-      if (e.key === 'Escape' && showSearch) {
-        setShowSearch(false);
-        setSearchQuery("");
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [showSearch]);
-
-  // Focus input when search opens
-  useEffect(() => {
-    if (showSearch && searchInputRef.current) {
-      setTimeout(() => searchInputRef.current?.focus(), 100);
-    }
-  }, [showSearch]);
-
-  // Global search functionality
-  useEffect(() => {
-    if (!debouncedQuery || debouncedQuery.trim().length < 2) {
-      setSearchResults({ news: [], articles: [], launches: [] });
-      setIsSearching(false);
-      return;
-    }
-
-    const performSearch = async () => {
-      setIsSearching(true);
-      const query = debouncedQuery.trim().toLowerCase();
-      const results = { news: [], articles: [], launches: [] };
-
-      try {
-        // Search News
-        const newsResponse = await fetch('/api/news?limit=10&ordering=-published_at');
-        if (newsResponse.ok) {
-          const newsData = await newsResponse.json();
-          if (newsData.results) {
-            const filteredNews = searchItems(
-              newsData.results.map(item => ({
-                id: item.id,
-                title: item.title,
-                summary: item.summary || '',
-                source: item.news_site || '',
-                url: item.url,
-                type: 'news'
-              })),
-              query,
-              ['title', 'summary', 'source']
-            );
-            results.news = filteredNews.slice(0, 5);
-          }
-        }
-
-        // Search Articles (from constants - we'll search locally)
-        // Note: For a full implementation, you might want to fetch articles from an API
-        // For now, we'll just show a link to the articles page
-        results.articles = []; // Placeholder - could enhance later
-
-        // Search Launches
-        const launchesResponse = await fetch('/api/launches?limit=10&ordering=net');
-        if (launchesResponse.ok) {
-          const launchesData = await launchesResponse.json();
-          if (launchesData.results) {
-            const filteredLaunches = searchItems(
-              launchesData.results.map(item => ({
-                id: item.id,
-                title: item.name || '',
-                mission: item.mission?.name || '',
-                description: item.mission?.description || '',
-                url: `/launches`,
-                type: 'launch'
-              })),
-              query,
-              ['title', 'mission', 'description']
-            );
-            results.launches = filteredLaunches.slice(0, 5);
-          }
-        }
-      } catch (error) {
-        console.error('Search error:', error);
-      } finally {
-        setSearchResults(results);
-        setIsSearching(false);
-      }
-    };
-
-    performSearch();
-  }, [debouncedQuery]);
 
   const handleLinkClick = () => {
     setIsOpen(false);
@@ -204,8 +100,6 @@ const Navbar = () => {
       document.body.style.overflow = "unset";
     };
   }, [isOpen]);
-
-  const totalResults = searchResults.news.length + searchResults.articles.length + searchResults.launches.length;
 
   return (
     <>
@@ -242,17 +136,6 @@ const Navbar = () => {
 
             <nav className="hidden lg:flex items-center gap-4">
               <Navigation />
-              <button
-                onClick={() => setShowSearch(true)}
-                className="p-2 rounded-lg text-neutral-400 hover:text-white hover:bg-white/10 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-lavender focus:ring-offset-2 focus:ring-offset-primary relative group"
-                aria-label="Search (Ctrl+K)"
-                title="Search (Ctrl+K or Cmd+K)"
-              >
-                <Search className="w-5 h-5" />
-                <span className="absolute -bottom-1 -right-1 text-[8px] text-neutral-500 group-hover:text-neutral-400">
-                  ⌘K
-                </span>
-              </button>
             </nav>
 
             <button
@@ -338,154 +221,6 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
-      {/* Global Search Modal */}
-      <AnimatePresence>
-        {showSearch && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-start justify-center pt-20 md:pt-32 bg-primary/90 backdrop-blur-md"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => {
-              setShowSearch(false);
-              setSearchQuery("");
-            }}
-          >
-            <motion.div
-              className="w-full max-w-3xl mx-4 max-h-[80vh] overflow-hidden flex flex-col"
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -20, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Search Input */}
-              <div className="relative mb-4">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  placeholder="Search for news, articles, launches... (Press Esc to close)"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-12 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-lavender focus:border-transparent"
-                  autoFocus
-                />
-                <button
-                  onClick={() => {
-                    setShowSearch(false);
-                    setSearchQuery("");
-                  }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-lg text-neutral-400 hover:text-white hover:bg-white/10 transition-all"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Search Results */}
-              <div className="bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 overflow-y-auto flex-1">
-                {isSearching ? (
-                  <div className="p-8 text-center text-neutral-400">
-                    <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-lavender"></div>
-                    <p className="mt-4">Searching...</p>
-                  </div>
-                ) : debouncedQuery && debouncedQuery.length >= 2 ? (
-                  totalResults > 0 ? (
-                    <div className="p-4 space-y-6">
-                      {/* News Results */}
-                      {searchResults.news.length > 0 && (
-                        <div>
-                          <div className="flex items-center gap-2 mb-3 px-2">
-                            <Clock className="w-4 h-4 text-lavender" />
-                            <h3 className="text-sm font-semibold text-white">News ({searchResults.news.length})</h3>
-                          </div>
-                          <div className="space-y-2">
-                            {searchResults.news.map((item) => (
-                              <Link
-                                key={item.id}
-                                href={`/news`}
-                                onClick={() => {
-                                  setShowSearch(false);
-                                  setSearchQuery("");
-                                }}
-                                className="block p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors group"
-                              >
-                                <p className="text-sm font-medium text-white group-hover:text-lavender transition-colors line-clamp-1">
-                                  {item.title}
-                                </p>
-                                <p className="text-xs text-neutral-400 mt-1 line-clamp-1">
-                                  {item.source}
-                                </p>
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Launches Results */}
-                      {searchResults.launches.length > 0 && (
-                        <div>
-                          <div className="flex items-center gap-2 mb-3 px-2">
-                            <Rocket className="w-4 h-4 text-lavender" />
-                            <h3 className="text-sm font-semibold text-white">Launches ({searchResults.launches.length})</h3>
-                          </div>
-                          <div className="space-y-2">
-                            {searchResults.launches.map((item) => (
-                              <Link
-                                key={item.id}
-                                href={`/launches`}
-                                onClick={() => {
-                                  setShowSearch(false);
-                                  setSearchQuery("");
-                                }}
-                                className="block p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors group"
-                              >
-                                <p className="text-sm font-medium text-white group-hover:text-lavender transition-colors line-clamp-1">
-                                  {item.title}
-                                </p>
-                                {item.mission && (
-                                  <p className="text-xs text-neutral-400 mt-1 line-clamp-1">
-                                    {item.mission}
-                                  </p>
-                                )}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* View All Link */}
-                      <div className="pt-4 border-t border-white/10">
-                        <Link
-                          href={`/news?q=${encodeURIComponent(debouncedQuery)}`}
-                          onClick={() => {
-                            setShowSearch(false);
-                            setSearchQuery("");
-                          }}
-                          className="flex items-center justify-center gap-2 p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-colors text-sm font-medium text-white"
-                        >
-                          View all results
-                          <ArrowRight className="w-4 h-4" />
-                        </Link>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="p-8 text-center">
-                      <Search className="w-12 h-12 text-neutral-600 mx-auto mb-4" />
-                      <p className="text-neutral-400">No results found for "{debouncedQuery}"</p>
-                      <p className="text-sm text-neutral-500 mt-2">Try different keywords</p>
-                    </div>
-                  )
-                ) : (
-                  <div className="p-8 text-center text-neutral-500">
-                    <p>Type at least 2 characters to search</p>
-                    <p className="text-xs mt-2">Press Ctrl+K or Cmd+K to open search</p>
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 };
