@@ -1,19 +1,26 @@
 "use client";
 
+import { useState } from "react";
 import { Timeline } from "../components/Timeline";
 import { cosmicMilestones } from "../constants";
 import { Particles } from "../components/Particles";
+import { ExternalLink, Sparkles } from "lucide-react";
+import Link from "next/link";
 
 const CosmicJourney = () => {
+  const [expandedMilestone, setExpandedMilestone] = useState(null);
+
   return (
     <section className="relative c-space section-spacing">
-      {/* SVG Background */}
+      {/* ISRO Logo Watermark - Subtle */}
       <div
-  className="absolute inset-0 -z-50 opacity-10 bg-center bg-no-repeat bg-contain"
-  style={{
-    backgroundImage: "url('/assets/ISRO.png')",
-  }}
-/>
+        className="fixed inset-0 -z-50 opacity-5 bg-center bg-no-repeat bg-contain pointer-events-none"
+        style={{
+          backgroundImage: "url('/assets/ISRO.png')",
+          backgroundPosition: "center",
+          backgroundSize: "60%",
+        }}
+      />
 
       {/* Particle Effect */}
       <Particles
@@ -34,20 +41,41 @@ const CosmicJourney = () => {
       />
 
       <div className="w-full pt-20">
-        <h2 className="text-5xl">ISRO Odyssey</h2>
-        <p className="text-neutral-400 ">
-          From humble beginnings to lunar and interplanetary missions, witness ISRO’s historic milestones with Venture Universe.
-        </p>
+        {/* Header */}
+        <div className="mb-12">
+          <div className="flex items-center gap-3 mb-4">
+            <Sparkles className="w-8 h-8 text-lavender" />
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+              ISRO Odyssey
+            </h2>
+          </div>
+          <p className="text-lg md:text-xl text-neutral-400 max-w-3xl leading-relaxed">
+            From humble beginnings to lunar and interplanetary missions, witness ISRO's historic milestones 
+            from Aryabhata to Chandrayaan-3 and beyond.
+          </p>
+        </div>
 
-        <Timeline data={cosmicMilestones} />
+        {/* Timeline */}
+        <Timeline 
+          data={cosmicMilestones} 
+          expandedMilestone={expandedMilestone}
+          onExpand={setExpandedMilestone}
+        />
 
-        <a
-          href="/news"
-          className="inline-flex items-center gap-2 px-4 py-2 mt-8 text-white bg-radial from-lavender to-royal rounded-md hover-animation"
-        >
-          Explore Space News
-          <img src="/assets/arrow-right.svg" className="w-4" />
-        </a>
+        {/* CTA Section */}
+        <div className="mt-12 flex flex-col sm:flex-row gap-4 items-center justify-between p-6 rounded-xl bg-gradient-to-br from-storm to-indigo border border-white/10">
+          <div>
+            <h3 className="text-xl font-bold text-white mb-2">Continue Your Journey</h3>
+            <p className="text-neutral-400">Explore more space discoveries and news</p>
+          </div>
+          <Link
+            href="/news"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 rounded-lg bg-gradient-to-r from-royal to-lavender hover:from-lavender hover:to-royal hover:scale-105 hover:shadow-lg hover:shadow-lavender/50"
+          >
+            Explore Space News
+            <ExternalLink className="w-4 h-4" />
+          </Link>
+        </div>
       </div>
     </section>
   );
