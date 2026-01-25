@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
-import { Rocket, Newspaper, BookOpen, Satellite } from "lucide-react";
+import { Rocket, Newspaper, BookOpen, Satellite, ArrowRight, Sparkles } from "lucide-react";
 
 const QuickAccess = () => {
   const sections = [
@@ -47,8 +47,11 @@ const QuickAccess = () => {
   return (
     <section className="c-space py-12 md:py-16">
       <div className="mb-8">
-        <h2 className="text-heading">Explore the Cosmos</h2>
-        <p className="mt-2 text-neutral-400">Dive into space news, missions, and discoveries</p>
+        <div className="flex items-center gap-3 mb-2">
+          <Sparkles className="w-6 h-6 text-lavender" />
+          <h2 className="text-heading">Explore the Cosmos</h2>
+        </div>
+        <p className="text-neutral-400">Dive into space news, missions, and discoveries</p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -60,25 +63,78 @@ const QuickAccess = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -8 }}
             >
               <Link
                 href={section.href}
-                className={`group relative flex flex-col h-full p-6 rounded-xl bg-gradient-to-br ${section.gradient} ${section.hoverGradient} transition-all duration-300 hover-animation hover:shadow-2xl`}
+                className={`group relative flex flex-col h-full p-6 md:p-8 rounded-xl bg-gradient-to-br ${section.gradient} border border-white/10 hover:border-white/30 transition-all duration-300 hover:shadow-2xl hover:shadow-lavender/20 focus:outline-none focus:ring-2 focus:ring-lavender focus:ring-offset-2 focus:ring-offset-primary`}
               >
-                <div className="mb-4">
-                  <Icon className="w-8 h-8 text-white" />
+                {/* Animated Background Glow */}
+                <motion.div
+                  className={`absolute inset-0 rounded-xl bg-gradient-to-br ${section.hoverGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                  initial={false}
+                />
+
+                {/* Decorative Particles */}
+                <div className="absolute inset-0 overflow-hidden rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {[...Array(8)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-1 h-1 bg-white rounded-full"
+                      style={{
+                        left: `${Math.random() * 100}%`,
+                        top: `${Math.random() * 100}%`,
+                      }}
+                      animate={{
+                        y: [0, -20, 0],
+                        opacity: [0, 1, 0],
+                        scale: [0, 1, 0],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: i * 0.2,
+                      }}
+                    />
+                  ))}
                 </div>
-                <h3 className="mb-2 text-xl font-semibold text-white">
-                  {section.title}
-                </h3>
-                <p className="text-sm text-white/80 flex-grow">
-                  {section.description}
-                </p>
-                <div className="mt-4 flex items-center text-sm text-white/90 group-hover:text-white">
-                  Explore
-                  <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
+
+                <div className="relative z-10">
+                  {/* Icon with Animation */}
+                  <div className="mb-6">
+                    <motion.div
+                      className="relative inline-block"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <div className="absolute inset-0 bg-white/20 rounded-lg blur-xl group-hover:bg-white/30 transition-colors" />
+                      <div className="relative p-3 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
+                        <Icon className="w-10 h-10 md:w-12 md:h-12 text-white" />
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="mb-3 text-xl md:text-2xl font-bold text-white group-hover:text-white transition-colors">
+                    {section.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-sm md:text-base text-white/80 flex-grow mb-6 leading-relaxed">
+                    {section.description}
+                  </p>
+
+                  {/* Explore Button */}
+                  <div className="flex items-center text-sm font-semibold text-white/90 group-hover:text-white transition-colors">
+                    <span>Explore</span>
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                      className="ml-2"
+                    >
+                      <ArrowRight className="w-4 h-4" />
+                    </motion.div>
+                  </div>
                 </div>
               </Link>
             </motion.div>
