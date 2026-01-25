@@ -58,7 +58,13 @@ const NewsDetails = ({
     }
   };
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <motion.div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={closeModal}
+    >
       <motion.div
         className="relative w-full max-w-3xl max-h-[90vh] rounded-2xl bg-primary/80 border border-white/10 overflow-hidden"
         style={{
@@ -70,6 +76,7 @@ const NewsDetails = ({
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
         transition={{ duration: 0.3 }}
+        onClick={(e) => e.stopPropagation()}
       >
         {/* SVG Background */}
         <div
@@ -190,7 +197,7 @@ const NewsDetails = ({
           </a>
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 
