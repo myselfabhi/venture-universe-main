@@ -9,7 +9,6 @@ import { Search, X } from "lucide-react";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/isro", label: "ISRO" },
-  { href: "/missions", label: "Missions" },
   { href: "/news", label: "News" },
   { href: "/articles", label: "Articles" },
   { href: "/contact", label: "Contact" },

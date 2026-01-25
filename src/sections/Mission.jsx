@@ -1,56 +1,183 @@
 "use client";
 
 import { useRef } from "react";
+import { motion } from "motion/react";
 import Card from "../components/Card";
 import { Globe } from "../components/globe";
 import CopyEmailButton from "../components/CopyEmailButton";
-import { Mail } from "lucide-react";
-import { OrbitingSpaceIcons } from "../components/OrbitingSpaceIcons";
+import { Mail, Rocket, Users, Target, Sparkles, ExternalLink } from "lucide-react";
 import { mySocials } from "../constants";
+import Link from "next/link";
 
 const Mission = () => {
   const grid2Container = useRef();
 
   return (
     <section className="c-space section-spacing" id="mission">
-      <h2 className="text-heading">Our Mission</h2>
-
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-6 md:auto-rows-[18rem] mt-12">
-
-        {/* Grid 1 – Hero Intro */}
-        <div className="flex items-end grid-default-color grid-1">
-          <img
-            src="/assets/image.jpg"
-            className="absolute scale-[1.75] -right-[5rem] -top-[1rem] md:scale-[3] md:left-50 md:inset-y-10 lg:scale-[2.5]"
-          />
-          <div className="z-10">
-            <p className="headtext">Welcome to Venture Universe</p>
-            <p className="subtext">
-              Explore, connect, and stay curious. We bring you the cosmos — news, discoveries, and a thriving space community.
-            </p>
-          </div>
-          <div className="absolute inset-x-0 pointer-events-none -bottom-4 h-1/2 sm:h-1/3 bg-gradient-to-t from-indigo" />
+      {/* Hero Section - Mission Statement */}
+      <div className="mb-16">
+        <div className="flex items-center gap-3 mb-4">
+          <Sparkles className="w-8 h-8 text-lavender" />
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+            Our Mission
+          </h2>
         </div>
+        <p className="text-lg md:text-xl text-neutral-400 max-w-3xl leading-relaxed">
+          Explore, connect, and stay curious. We bring you the cosmos — news, discoveries, 
+          and a thriving space community dedicated to inspiring the next generation of space explorers.
+        </p>
+      </div>
 
-        {/* Grid 2 – Space Brings Us Together */}
-        <div className="rounded-2xl grid-2">
-        <img
-            src="/assets/card-2.jpg"
-            className="absolute   "
-          />
+      {/* Main Content - 2 Column Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+        {/* Left Column - Welcome Card */}
+        <motion.div
+          className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-storm to-indigo border border-white/10 hover:border-lavender/50 transition-all duration-300 hover:shadow-xl hover:shadow-lavender/10 group"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="relative p-8 md:p-10 h-full flex flex-col">
+            <div className="mb-6">
+              <Rocket className="w-12 h-12 text-lavender mb-4" />
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                Welcome to Venture Universe
+              </h3>
+              <p className="text-base md:text-lg text-neutral-300 leading-relaxed">
+                Explore, connect, and stay curious. We bring you the cosmos — news, discoveries, 
+                and a thriving space community.
+              </p>
+            </div>
+            
+            {/* Background Image - Subtle */}
+            <div className="absolute bottom-0 right-0 w-64 h-64 opacity-10 pointer-events-none">
+              <img
+                src="/assets/image.jpg"
+                alt=""
+                className="object-cover w-full h-full rounded-tl-full"
+              />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Right Column - Space Community */}
+        <motion.div
+          className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0B0F2F] to-navy border border-white/10 hover:border-lavender/50 transition-all duration-300 hover:shadow-xl hover:shadow-lavender/10 group"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <div className="relative p-8 md:p-10 h-full flex flex-col">
+            <div className="mb-6">
+              <Users className="w-12 h-12 text-lavender mb-4" />
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                From Earth to the Cosmos
+              </h3>
+              <p className="text-base md:text-lg text-neutral-300 leading-relaxed mb-4">
+                Join our space tribe and explore together:
+              </p>
+              <div className="flex gap-4">
+                {mySocials.map((social, index) => (
+                  <a
+                    href={social.href}
+                    key={index}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                  >
+                    <img
+                      src={social.icon.startsWith('/') ? social.icon : `/${social.icon}`}
+                      className="w-6 h-6"
+                      alt={social.name}
+                    />
+                  </a>
+                ))}
+              </div>
+            </div>
+            
+            {/* Globe Component */}
+            <div className="absolute bottom-0 right-0 w-48 h-48 opacity-20 pointer-events-none">
+              <Globe />
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Section Divider */}
+      <div className="my-12 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+      {/* Indian Space Legacy Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+        {/* Left - Dr. Kalam Card */}
+        <motion.div
+          className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-storm to-indigo border border-white/10 hover:border-lavender/50 transition-all duration-300 hover:shadow-xl hover:shadow-lavender/10 group"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <div className="relative p-8 md:p-10 h-full flex flex-col">
+            <div className="mb-6 z-10">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                Dr. A.P.J. Abdul Kalam
+              </h3>
+              <div className="space-y-2 text-base text-neutral-300">
+                <p>👨‍🚀 Missile Man of India</p>
+                <p>🇮🇳 Architect of India's Space</p>
+                <p>🚀 11th President & Youth Icon</p>
+              </div>
+            </div>
+            
+            {/* Background Image */}
+            <div className="absolute bottom-0 right-0 w-64 h-64 opacity-20 pointer-events-none">
+              <img
+                src="/assets/APJ.jpg"
+                alt="Dr. A.P.J. Abdul Kalam"
+                className="object-cover w-full h-full rounded-tl-full"
+              />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Right - Space Topics Card */}
+        <motion.div
+          className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-royal to-lavender border border-white/10 hover:border-lavender/50 transition-all duration-300 hover:shadow-xl hover:shadow-lavender/10 group"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           <div
             ref={grid2Container}
-            className="flex items-center justify-center w-full h-full bg-[#0B0F2F]"
+            className="relative p-8 md:p-10 h-full min-h-[300px] flex items-center justify-center bg-[#0B0F2F]/50"
           >
+            <div className="absolute inset-0 opacity-10">
+              <img
+                src="/assets/card-2.jpg"
+                alt=""
+                className="object-cover w-full h-full"
+              />
+            </div>
+            
+            <div className="relative z-10 text-center mb-4">
+              <Target className="w-12 h-12 text-white mx-auto mb-4" />
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
+                Space Brings Us Together
+              </h3>
+            </div>
+
+            {/* Floating Cards */}
             {[
-                "Chandrayaan Missions",
-  "Mangalyaan Legacy",
-  "ISRO Innovations",
-  "Rakesh Sharma’s Journey",
-  "Gaganyaan Dreams",
-  "PSLV Power",
-  "Antrix Ambitions",
-  "Indian Space Odyssey"
+              "Chandrayaan Missions",
+              "Mangalyaan Legacy",
+              "ISRO Innovations",
+              "Rakesh Sharma's Journey",
+              "Gaganyaan Dreams",
+              "PSLV Power",
+              "Antrix Ambitions",
+              "Indian Space Odyssey"
             ].map((text, index) => (
               <Card
                 key={index}
@@ -64,61 +191,54 @@ const Mission = () => {
               />
             ))}
           </div>
+        </motion.div>
+      </div>
+
+      {/* Section Divider */}
+      <div className="my-12 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+      {/* Contribution Section */}
+      <motion.div
+        className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-lavender to-royal border border-white/10 hover:border-white/30 transition-all duration-300 hover:shadow-xl hover:shadow-lavender/20"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+      >
+        <div className="p-8 md:p-12 text-center">
+          <Mail className="w-16 h-16 text-white mx-auto mb-6" />
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            Want to Contribute?
+          </h3>
+          <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+            Join us as a writer or collaborator to empower young minds and share the wonders of space exploration.
+          </p>
+          <CopyEmailButton />
         </div>
+      </motion.div>
 
-        {/* Grid 3 – Global & Cosmic Community */}
-        <div className="grid-black-color grid-3 relative">
-          <div className="z-10 w-[50%]">
-            <p className="headtext">From Earth to the Cosmos</p>
-            <div className="subtext">
-              Join our space tribe and explore together:
-              <br />
-              <div className="flex gap-3 mt-2">
-                      {mySocials.map((social, index) => (
-                        <a href={social.href} key={index}>
-                          <img src={social.icon} className="w-5 h-5" alt={social.name} />
-                        </a>
-                      ))}
-                    </div>
-            </div>
-          </div>
-          <figure className="absolute left-[30%] top-[10%]">
-            <Globe />
-          </figure>
+      {/* CTA Section */}
+      <div className="mt-12 flex flex-col sm:flex-row gap-4 items-center justify-between p-6 rounded-xl bg-gradient-to-br from-storm to-indigo border border-white/10">
+        <div>
+          <h3 className="text-xl font-bold text-white mb-2">Explore More</h3>
+          <p className="text-neutral-400">Discover space news, launches, and articles</p>
         </div>
-
-        {/* Grid 4 – Writer/Collaborator Email */}
-        <div className="grid-special-color grid-4">
-          <div className="flex flex-col items-center justify-center gap-4 size-full text-center">
-            <Mail className="w-8 h-8 text-white" />
-            <p className="headtext">
-              Want to contribute as a writer or collaborate to Empower the Young Minds?
-            </p>
-            <CopyEmailButton />
-          </div>
+        <div className="flex gap-3">
+          <Link
+            href="/news"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 rounded-lg bg-gradient-to-r from-royal to-lavender hover:from-lavender hover:to-royal hover:scale-105 hover:shadow-lg hover:shadow-lavender/50"
+          >
+            View News
+            <ExternalLink className="w-4 h-4" />
+          </Link>
+          <Link
+            href="/isro"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 rounded-lg border-2 border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/40 hover:scale-105"
+          >
+            ISRO Odyssey
+            <ExternalLink className="w-4 h-4" />
+          </Link>
         </div>
-
-        {/* Grid 5 – ISRO and Indian Space Legacy */}
-
-        <div className="grid-default-color grid-5">
-          <div className="z-10 w-[50%] md:mt-13">
-          <p className="headtext">Dr. A.P.J. Abdul Kalam</p>
-<p className="subtext">
-  👨‍🚀 Missile Man of India <br />
-  🇮🇳 Architect of India’s Space <br />
-  🚀 11th President & Youth Icon
-</p>
-
-
-          </div>
-          <div className="absolute inset-y-0 md:inset-y-9 w-full h-full start-[50%] md:scale-125">
-            <img
-              src="/assets/APJ.jpg"
-              className="absolute scale-[1.75] -right-[2 rem] -top-[1rem] md:scale-[3] md:left-25 -z-10 md:inset-y-10 lg:scale-[1.5]"
-            />
-          </div>
-        </div>
-
       </div>
     </section>
   );
