@@ -56,7 +56,17 @@ const APODFeatured = () => {
             <Sparkles className="w-6 h-6 text-lavender" />
             <h2 className="text-heading">Today's Featured Image</h2>
           </div>
-          <p className="text-neutral-400">Loading today's cosmic wonder...</p>
+          <p className="text-neutral-400">NASA's Astronomy Picture of the Day</p>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-0 vu-card overflow-hidden">
+          <div className="lg:col-span-3 vu-shimmer h-[400px] lg:h-[600px]" />
+          <div className="lg:col-span-2 p-6 md:p-8 space-y-4">
+            <div className="vu-shimmer h-8 w-3/4 rounded-lg" />
+            <div className="vu-shimmer h-4 w-full rounded" />
+            <div className="vu-shimmer h-4 w-full rounded" />
+            <div className="vu-shimmer h-4 w-5/6 rounded" />
+            <div className="vu-shimmer h-10 w-full rounded-xl mt-6" />
+          </div>
         </div>
       </section>
     );

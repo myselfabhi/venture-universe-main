@@ -63,10 +63,31 @@ const FeaturedNews = () => {
               <Sparkles className="w-6 h-6 text-lavender" />
               <h2 className="text-heading">Latest Space News</h2>
             </div>
-            <p className="text-neutral-400">Stay updated with the cosmos</p>
+            <p className="text-neutral-400">Breaking discoveries and cosmic updates</p>
           </div>
         </div>
-        <div className="text-neutral-400">Loading latest news...</div>
+        <div className="vu-card overflow-hidden mb-8 grid grid-cols-1 md:grid-cols-2">
+          <div className="vu-shimmer h-64 md:h-80" />
+          <div className="p-6 md:p-8 space-y-3">
+            <div className="vu-shimmer h-5 w-1/3 rounded" />
+            <div className="vu-shimmer h-7 w-full rounded-lg" />
+            <div className="vu-shimmer h-7 w-3/4 rounded-lg" />
+            <div className="vu-shimmer h-4 w-full rounded" />
+            <div className="vu-shimmer h-4 w-5/6 rounded" />
+          </div>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {[1, 2].map((i) => (
+            <div key={i} className="vu-card overflow-hidden">
+              <div className="vu-shimmer h-48" />
+              <div className="p-6 space-y-2.5">
+                <div className="vu-shimmer h-4 w-1/2 rounded" />
+                <div className="vu-shimmer h-5 w-full rounded-lg" />
+                <div className="vu-shimmer h-4 w-2/3 rounded" />
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
     );
   }
