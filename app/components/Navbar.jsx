@@ -5,12 +5,17 @@ import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
+import CommandMenu from "../../src/components/CommandMenu";
+import ThemeToggle from "../../src/components/ThemeToggle";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/isro", label: "ISRO" },
+  { href: "/iss", label: "ISS" },
+  { href: "/sky-tonight", label: "Sky" },
+  { href: "/missions", label: "Missions" },
+  { href: "/launches", label: "Launches" },
   { href: "/news", label: "News" },
-  { href: "/articles", label: "Articles" },
+  { href: "/isro", label: "ISRO" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -138,6 +143,10 @@ const Navbar = () => {
               <Navigation />
             </nav>
 
+            <div className="flex items-center gap-2">
+              <CommandMenu />
+              <ThemeToggle className="hidden md:inline-flex" />
+
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg text-neutral-400 hover:text-white hover:bg-white/10 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-lavender focus:ring-offset-2 focus:ring-offset-primary"
@@ -174,6 +183,7 @@ const Navbar = () => {
                 />
               </motion.div>
             </button>
+            </div>
           </div>
         </div>
       </nav>

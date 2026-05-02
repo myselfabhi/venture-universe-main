@@ -1,0 +1,212 @@
+/* Venture Universe — design tokens
+   Single source of truth for color, motion, radius, shadow, type scale.
+   Tailwind palette is mirrored here as CSS vars so a theme switch is mechanical. */
+
+:root {
+  /* Brand palette (dark — default) */
+  --vu-bg: #030412;
+  --vu-bg-soft: #06091f;
+  --vu-surface: #161a31;
+  --vu-surface-elevated: #1f1e39;
+  --vu-storm: #282b4b;
+  --vu-text: #ffffff;
+  --vu-text-muted: rgba(255, 255, 255, 0.65);
+  --vu-text-subtle: rgba(255, 255, 255, 0.45);
+  --vu-border: rgba(255, 255, 255, 0.08);
+  --vu-border-strong: rgba(255, 255, 255, 0.18);
+
+  /* Accents */
+  --vu-aqua: #33c2cc;
+  --vu-mint: #57db96;
+  --vu-royal: #5c33cc;
+  --vu-lavender: #7a57db;
+  --vu-fuchsia: #ca2f8c;
+  --vu-coral: #ea4884;
+  --vu-orange: #cc6033;
+  --vu-sand: #d6995c;
+
+  /* Glass */
+  --vu-glass-bg: rgba(255, 255, 255, 0.04);
+  --vu-glass-bg-strong: rgba(255, 255, 255, 0.08);
+  --vu-glass-border: rgba(255, 255, 255, 0.12);
+  --vu-glass-blur: 18px;
+
+  /* Motion */
+  --motion-instant: 80ms;
+  --motion-fast: 150ms;
+  --motion-base: 280ms;
+  --motion-slow: 600ms;
+  --motion-cinematic: 1200ms;
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-cinematic: cubic-bezier(0.83, 0, 0.17, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+  --radius-pill: 9999px;
+
+  /* Shadow */
+  --shadow-glow-aqua: 0 0 40px rgba(51, 194, 204, 0.35);
+  --shadow-glow-lavender: 0 0 40px rgba(122, 87, 219, 0.35);
+  --shadow-card: 0 12px 32px -16px rgba(0, 0, 0, 0.6);
+  --shadow-card-hover: 0 18px 50px -20px rgba(122, 87, 219, 0.5);
+
+  /* Z-index layers */
+  --z-base: 1;
+  --z-overlay: 40;
+  --z-nav: 50;
+  --z-modal: 60;
+  --z-cursor: 70;
+  --z-toast: 80;
+}
+
+/* Light mode — daylight nebula. Warm cream backgrounds, accents intact. */
+[data-theme='light'] {
+  --vu-bg: #f5f1ea;
+  --vu-bg-soft: #ece5d8;
+  --vu-surface: #ffffff;
+  --vu-surface-elevated: #faf6ee;
+  --vu-storm: #e8e0cf;
+  --vu-text: #1a1538;
+  --vu-text-muted: rgba(26, 21, 56, 0.7);
+  --vu-text-subtle: rgba(26, 21, 56, 0.5);
+  --vu-border: rgba(26, 21, 56, 0.1);
+  --vu-border-strong: rgba(26, 21, 56, 0.2);
+  --vu-glass-bg: rgba(255, 255, 255, 0.55);
+  --vu-glass-bg-strong: rgba(255, 255, 255, 0.75);
+  --vu-glass-border: rgba(26, 21, 56, 0.12);
+  --shadow-card: 0 8px 24px -12px rgba(26, 21, 56, 0.18);
+  --shadow-card-hover: 0 16px 40px -18px rgba(122, 87, 219, 0.35);
+}
+
+/* Glassmorphism utilities — works in both themes */
+.vu-glass {
+  background: var(--vu-glass-bg);
+  backdrop-filter: blur(var(--vu-glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--vu-glass-blur)) saturate(180%);
+  border: 1px solid var(--vu-glass-border);
+}
+
+.vu-glass-strong {
+  background: var(--vu-glass-bg-strong);
+  backdrop-filter: blur(calc(var(--vu-glass-blur) * 1.4)) saturate(180%);
+  -webkit-backdrop-filter: blur(calc(var(--vu-glass-blur) * 1.4)) saturate(180%);
+  border: 1px solid var(--vu-glass-border);
+}
+
+.vu-card {
+  background: linear-gradient(180deg, var(--vu-glass-bg-strong), var(--vu-glass-bg));
+  backdrop-filter: blur(var(--vu-glass-blur)) saturate(160%);
+  -webkit-backdrop-filter: blur(var(--vu-glass-blur)) saturate(160%);
+  border: 1px solid var(--vu-glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--motion-base) var(--ease-out-soft),
+    box-shadow var(--motion-base) var(--ease-out-soft),
+    border-color var(--motion-base) var(--ease-out-soft);
+}
+
+.vu-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(122, 87, 219, 0.45);
+}
+
+/* Kinetic underline for nav / inline links */
+.vu-underline {
+  position: relative;
+  display: inline-block;
+}
+.vu-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1.5px;
+  background: linear-gradient(90deg, var(--vu-aqua), var(--vu-lavender), var(--vu-fuchsia));
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--motion-base) var(--ease-out-soft);
+}
+.vu-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Shimmer for skeletons */
+@keyframes vu-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.vu-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--vu-glass-bg) 0%,
+    var(--vu-glass-bg-strong) 50%,
+    var(--vu-glass-bg) 100%
+  );
+  background-size: 200% 100%;
+  animation: vu-shimmer 1.6s linear infinite;
+}
+
+/* Twinkle */
+@keyframes vu-twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+.vu-twinkle {
+  animation: vu-twinkle 2.4s ease-in-out infinite;
+}
+
+/* Orbit (used by orbit loader) */
+@keyframes vu-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Reduced motion — kill all decorative animation */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom cursor — disabled on touch devices */
+.vu-cursor-active * {
+  cursor: none !important;
+}
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .vu-cursor-active * {
+    cursor: auto !important;
+  }
+}
+
+/* Focus ring — visible across themes */
+:focus-visible {
+  outline: 2px solid var(--vu-aqua);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip link */
+.vu-skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 999;
+  padding: 0.5rem 1rem;
+  background: var(--vu-lavender);
+  color: white;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: top var(--motion-fast);
+}
+.vu-skip-link:focus {
+  top: 1rem;
+}

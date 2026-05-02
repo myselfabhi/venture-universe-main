@@ -2,23 +2,20 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['apod.nasa.gov'],
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'apod.nasa.gov',
-      },
-      {
-        protocol: 'https',
-        hostname: 'upload.wikimedia.org',
-      },
+      { protocol: "https", hostname: "**.nasa.gov" },
+      { protocol: "https", hostname: "apod.nasa.gov" },
+      { protocol: "https", hostname: "**.wikimedia.org" },
+      { protocol: "https", hostname: "**.thespacedevs.com" },
+      { protocol: "https", hostname: "**.spaceflightnow.com" },
+      { protocol: "https", hostname: "**.spacenews.com" },
+      { protocol: "https", hostname: "**" },
     ],
   },
-  // Handle static assets
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(glb|gltf)$/,
-      type: 'asset/resource',
+      type: "asset/resource",
     });
     return config;
   },

@@ -7,6 +7,8 @@ import NewsDetails from "../components/NewsDetails";
 import { Search, Filter, X, Clock, ExternalLink, Newspaper, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 import { useDebounce } from "../hooks/useDebounce";
 import { highlightSearchTerm, searchItems } from "../utils/searchUtils";
+import BookmarkButton from "../components/BookmarkButton";
+import ShareButton from "../components/ShareButton";
 
 const News = () => {
   const [newsItems, setNewsItems] = useState([]);
@@ -371,6 +373,23 @@ const News = () => {
                     <span className="px-3 py-1 text-xs font-semibold text-white rounded-full bg-black/50 backdrop-blur-sm border border-white/20">
                       {news.source}
                     </span>
+                  </div>
+                  {/* Action chips */}
+                  <div className="absolute top-3 right-3 z-10 flex gap-1.5">
+                    <BookmarkButton
+                      item={{
+                        id: `news-${news.id}`,
+                        type: "news",
+                        title: news.title,
+                        href: news.href,
+                        image: news.image,
+                      }}
+                    />
+                    <ShareButton
+                      title={news.title}
+                      text={news.excerpt}
+                      url={news.href}
+                    />
                   </div>
                 </div>
 

@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Rocket, Calendar, ExternalLink, Clock } from "lucide-react";
+import Countdown from "../components/Countdown";
+import { RocketLoader } from "../components/loaders";
 
 const UpcomingLaunches = () => {
   const [launches, setLaunches] = useState([]);
@@ -128,8 +130,8 @@ const UpcomingLaunches = () => {
             <Rocket className="w-6 h-6 text-royal" />
             <h2 className="text-heading">Upcoming Launches</h2>
           </div>
-          <p className="text-neutral-400">Loading upcoming missions...</p>
         </div>
+        <RocketLoader label="Locking onto launch windows…" />
       </section>
     );
   }
@@ -278,16 +280,10 @@ const UpcomingLaunches = () => {
                   )}
                 </div>
 
-                {/* Countdown Badge */}
-                {daysUntil > 0 ? (
-                  <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-xs font-medium text-white rounded-full bg-white/10">
-                    {daysUntil === 1 ? 'Tomorrow' : `${daysUntil} days away`}
-                  </div>
-                ) : (
-                  <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-xs font-semibold text-white rounded-full bg-gradient-to-r from-mint to-aqua">
-                    Launching Today!
-                  </div>
-                )}
+                {/* Live Countdown */}
+                <div className="mb-4">
+                  <Countdown target={launch.net} />
+                </div>
 
                 {/* Description */}
                 {launch.description && (

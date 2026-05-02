@@ -1,24 +1,30 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
+import Link from "next/link";
 import { motion } from "motion/react";
 import emailjs from "@emailjs/browser";
+import {
+  Send,
+  MessageSquare,
+  Sparkles,
+  Mail,
+  Users,
+  CheckCircle2,
+} from "lucide-react";
 import Alert from "../components/Alert";
 import { Particles } from "../components/Particles";
-import Card from "../components/Card";
-import { Globe } from "../components/globe";
 import CopyEmailButton from "../components/CopyEmailButton";
-import { 
-  Mail, 
-  Rocket, 
-  Users, 
-  Sparkles, 
-  ExternalLink,
-  Send,
-  MessageSquare
-} from "lucide-react";
+import Newsletter from "../components/Newsletter";
 import { mySocials } from "../constants";
-import Link from "next/link";
+import { fadeUp, viewportOnce, staggerContainer } from "../lib/motion";
+
+const TOPICS = [
+  { id: "feedback", label: "Share feedback", icon: "💬" },
+  { id: "writer", label: "Write for us", icon: "✍️" },
+  { id: "partner", label: "Partner up", icon: "🤝" },
+  { id: "other", label: "Just saying hi", icon: "👋" },
+];
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -26,35 +32,30 @@ const Contact = () => {
     email: "",
     message: "",
   });
+  const [topic, setTopic] = useState("feedback");
   const [isLoading, setIsLoading] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertType, setAlertType] = useState("success");
   const [alertMessage, setAlertMessage] = useState("");
-  const grid2Container = useRef();
 
-  const handleChange = (e) => {
+  const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const showAlertMessage = (type, message) => {
     setAlertType(type);
     setAlertMessage(message);
     setShowAlert(true);
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 5000);
+    setTimeout(() => setShowAlert(false), 5000);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-
     try {
-      console.log("Form submitted:", formData);
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_6vnam7b";
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "template_lyp52jw";
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "pn-Bw_mS1_QQdofuV";
-      
+
       await emailjs.send(
         serviceId,
         templateId,
@@ -63,311 +64,273 @@ const Contact = () => {
           to_name: "Venture Universe",
           from_email: formData.email,
           to_email: "venture.universe.yt@gmail.com",
-          message: formData.message,
+          message: `[${TOPICS.find((t) => t.id === topic)?.label}]\n\n${formData.message}`,
         },
         publicKey
       );
-      setIsLoading(false);
       setFormData({ name: "", email: "", message: "" });
-      showAlertMessage("success", "Your message has been sent!");
-    } catch (error) {
+      showAlertMessage("success", "Message launched! We'll respond within an orbit.");
+    } catch (err) {
+      showAlertMessage("danger", "Transmission failed. Try again.");
+    } finally {
       setIsLoading(false);
-      console.log(error);
-      showAlertMessage("danger", "Something went wrong!");
     }
   };
 
+  const charCount = formData.message.length;
+  const charLimit = 800;
+
   return (
-    <section className="relative c-space section-spacing" id="contact">
+    <section className="relative pt-28 pb-16">
       <Particles
-        className="absolute inset-0 -z-50"
-        quantity={100}
+        className="absolute inset-0 -z-10"
+        quantity={70}
         ease={80}
         color={"#ffffff"}
         refresh
       />
       {showAlert && <Alert type={alertType} text={alertMessage} />}
 
-      {/* Hero Section - Mission Statement */}
-      <motion.div
-        className="mb-16"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="flex items-center gap-3 mb-4">
-          <Sparkles className="w-8 h-8 text-lavender" />
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-            Let's Connect
-          </h2>
-        </div>
-        <p className="text-lg md:text-xl text-neutral-400 max-w-3xl leading-relaxed">
-          Explore, connect, and stay curious. Whether you're aiming to launch a stellar website, 
-          enhance your digital orbit, or bring a cosmic idea to life, Venture Universe is here to elevate your mission.
-        </p>
-      </motion.div>
-
-      {/* Main Content - Form + Community Cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-12">
-        {/* Left Column - Contact Form (60%) */}
-        <motion.div
-          className="lg:col-span-3"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+      <div className="c-space">
+        <motion.header
+          className="mb-12 text-center md:text-left"
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
         >
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-storm to-indigo border border-white/10 hover:border-lavender/50 transition-all duration-300 p-8 md:p-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full vu-glass text-xs uppercase tracking-widest text-aqua mb-4">
+            <Sparkles className="w-3 h-3" />
+            Open channel
+          </div>
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-3 leading-tight">
+            Drop us a{" "}
+            <span className="bg-gradient-to-br from-aqua via-lavender to-fuchsia bg-clip-text text-transparent">
+              transmission
+            </span>
+          </h1>
+          <p className="text-lg text-neutral-400 max-w-2xl">
+            Feedback, story pitches, partnerships, or just a friendly hello — we read every message.
+          </p>
+        </motion.header>
+
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-12">
+          {/* Form */}
+          <motion.div
+            className="lg:col-span-3 vu-card p-6 md:p-8"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={viewportOnce}
+          >
             <div className="flex items-center gap-3 mb-6">
-              <MessageSquare className="w-8 h-8 text-lavender" />
-              <h3 className="text-2xl md:text-3xl font-bold text-white">
-                Send us a Message
-              </h3>
+              <div className="p-2 rounded-lg bg-gradient-to-br from-royal/20 to-lavender/20">
+                <MessageSquare className="w-5 h-5 text-lavender" />
+              </div>
+              <h2 className="text-2xl font-bold">Send a message</h2>
             </div>
-            <form className="w-full" onSubmit={handleSubmit}>
-              <div className="mb-5">
-                <label htmlFor="name" className="block text-sm font-medium text-neutral-300 mb-2">
-                  Full Name
+
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div>
+                <label className="text-xs uppercase tracking-widest text-neutral-400 mb-2 block">
+                  What's this about?
                 </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-neutral-500 focus:outline-none focus:border-lavender/50 focus:ring-2 focus:ring-lavender/20 transition-all duration-300"
-                  placeholder="Your name"
-                  autoComplete="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                  {TOPICS.map((t) => (
+                    <button
+                      key={t.id}
+                      type="button"
+                      onClick={() => setTopic(t.id)}
+                      className={`px-3 py-2.5 rounded-lg text-xs font-medium transition flex items-center gap-2 justify-center ${
+                        topic === t.id
+                          ? "bg-gradient-to-r from-royal to-lavender text-white shadow-lg shadow-lavender/30"
+                          : "vu-glass text-neutral-300 hover:text-white"
+                      }`}
+                    >
+                      <span>{t.icon}</span>
+                      <span className="hidden sm:inline">{t.label}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className="mb-5">
-                <label htmlFor="email" className="block text-sm font-medium text-neutral-300 mb-2">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-neutral-500 focus:outline-none focus:border-lavender/50 focus:ring-2 focus:ring-lavender/20 transition-all duration-300"
-                  placeholder="@email.com"
-                  autoComplete="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
+
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="name" className="text-xs uppercase tracking-widest text-neutral-400 mb-2 block">
+                    Your name
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    placeholder="Cmdr. Jane Doe"
+                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/15 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-aqua/50 focus:border-aqua/50 transition"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="text-xs uppercase tracking-widest text-neutral-400 mb-2 block">
+                    Reply-to
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="you@galaxy.io"
+                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/15 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-aqua/50 focus:border-aqua/50 transition"
+                  />
+                </div>
               </div>
-              <div className="mb-5">
-                <label htmlFor="message" className="block text-sm font-medium text-neutral-300 mb-2">
-                  Message
-                </label>
+
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <label htmlFor="message" className="text-xs uppercase tracking-widest text-neutral-400">
+                    Your transmission
+                  </label>
+                  <span
+                    className={`text-xs ${
+                      charCount > charLimit ? "text-coral" : "text-neutral-500"
+                    }`}
+                  >
+                    {charCount}/{charLimit}
+                  </span>
+                </div>
                 <textarea
                   id="message"
                   name="message"
-                  rows="5"
-                  className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-neutral-500 focus:outline-none focus:border-lavender/50 focus:ring-2 focus:ring-lavender/20 transition-all duration-300 resize-none"
-                  placeholder="Share your thoughts..."
+                  rows={6}
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  maxLength={charLimit + 100}
+                  placeholder="What's on your mind?"
+                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/15 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-aqua/50 focus:border-aqua/50 transition resize-none"
                 />
               </div>
+
               <button
                 type="submit"
-                disabled={isLoading}
-                className="w-full px-6 py-3 text-lg font-semibold text-white rounded-lg bg-gradient-to-r from-royal to-lavender hover:from-lavender hover:to-royal transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-lavender/50 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                disabled={isLoading || charCount > charLimit}
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-royal to-lavender text-white font-semibold hover:scale-[1.01] hover:shadow-lg hover:shadow-lavender/40 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {!isLoading ? (
+                {isLoading ? (
                   <>
-                    <Send className="w-5 h-5" />
-                    Send Message
+                    <motion.span
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      className="block w-4 h-4 rounded-full border-2 border-white/30 border-t-white"
+                    />
+                    Launching…
                   </>
                 ) : (
-                  "Sending..."
+                  <>
+                    <Send className="w-4 h-4" />
+                    Send transmission
+                  </>
                 )}
               </button>
             </form>
-          </div>
-        </motion.div>
+          </motion.div>
 
-        {/* Right Column - Community & Contribution Cards (40%) */}
-        <div className="lg:col-span-2 space-y-6">
-          {/* Community Card */}
-          <motion.div
-            className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0B0F2F] to-navy border border-white/10 hover:border-lavender/50 transition-all duration-300 hover:shadow-xl hover:shadow-lavender/10"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <div className="relative p-6 md:p-8 h-full flex flex-col">
-              <Users className="w-10 h-10 text-lavender mb-4" />
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
-                Join Our Space Tribe
-              </h3>
-              <p className="text-sm md:text-base text-neutral-300 mb-4">
-                Connect with us across the cosmos:
+          {/* Sidebar */}
+          <div className="lg:col-span-2 space-y-4">
+            <motion.div
+              className="vu-card p-6"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={viewportOnce}
+            >
+              <Users className="w-7 h-7 text-aqua mb-3" />
+              <h3 className="font-bold mb-2">Join the tribe</h3>
+              <p className="text-sm text-neutral-400 mb-4">
+                Follow along across the network.
               </p>
-              <div className="flex flex-wrap gap-3">
-                {mySocials.map((social, index) => (
+              <div className="flex flex-wrap gap-2">
+                {mySocials.map((s) => (
                   <a
-                    href={social.href}
-                    key={index}
+                    key={s.name}
+                    href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                    aria-label={s.name}
+                    className="p-2.5 rounded-lg vu-glass hover:bg-white/15 transition hover:scale-110"
                   >
                     <img
-                      src={social.icon.startsWith('/') ? social.icon : `/${social.icon}`}
-                      className="w-5 h-5"
-                      alt={social.name}
+                      src={s.icon.startsWith("/") ? s.icon : `/${s.icon}`}
+                      className="w-4 h-4"
+                      alt=""
                     />
                   </a>
                 ))}
               </div>
-              <div className="absolute bottom-0 right-0 w-32 h-32 opacity-10 pointer-events-none">
-                <Globe />
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Contribution Card */}
-          <motion.div
-            className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-lavender to-royal border border-white/10 hover:border-white/30 transition-all duration-300 hover:shadow-xl hover:shadow-lavender/20"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="relative p-6 md:p-8 text-center">
-              <Mail className="w-10 h-10 text-white mx-auto mb-4" />
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
-                Want to Contribute?
-              </h3>
-              <p className="text-sm md:text-base text-white/90 mb-4">
-                Join us as a writer or collaborator to empower young minds.
+            <motion.div
+              className="vu-card p-6 relative overflow-hidden"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={viewportOnce}
+            >
+              <div className="absolute -right-12 -top-12 w-32 h-32 rounded-full bg-gradient-to-br from-fuchsia/20 to-lavender/20 blur-2xl pointer-events-none" />
+              <Mail className="w-7 h-7 text-fuchsia mb-3 relative" />
+              <h3 className="font-bold mb-2 relative">Want to contribute?</h3>
+              <p className="text-sm text-neutral-400 mb-4 relative">
+                We&apos;re looking for writers and collaborators who love the cosmos.
               </p>
-              <CopyEmailButton />
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Section Divider */}
-      <div className="my-12 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
-      {/* Indian Space Legacy Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
-        {/* Left - Dr. Kalam Card */}
-        <motion.div
-          className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-storm to-indigo border border-white/10 hover:border-lavender/50 transition-all duration-300 hover:shadow-xl hover:shadow-lavender/10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <div className="relative p-8 md:p-10 h-full flex flex-col">
-            <div className="mb-6 z-10">
-              <Rocket className="w-12 h-12 text-lavender mb-4" />
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                Dr. A.P.J. Abdul Kalam
-              </h3>
-              <div className="space-y-2 text-base text-neutral-300">
-                <p>👨‍🚀 Missile Man of India</p>
-                <p>🇮🇳 Architect of India's Space</p>
-                <p>🚀 11th President & Youth Icon</p>
+              <div className="relative">
+                <CopyEmailButton />
               </div>
-            </div>
-            <div className="absolute bottom-0 right-0 w-64 h-64 opacity-20 pointer-events-none">
-              <img
-                src="/assets/APJ.jpg"
-                alt="Dr. A.P.J. Abdul Kalam"
-                className="object-cover w-full h-full rounded-tl-full"
-              />
+            </motion.div>
+
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={viewportOnce}
+            >
+              <Newsletter compact />
+            </motion.div>
+          </div>
+        </div>
+
+        <motion.div
+          className="vu-card p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+        >
+          <div className="flex items-center gap-3">
+            <CheckCircle2 className="w-6 h-6 text-mint" />
+            <div>
+              <p className="font-semibold">No spam, ever</p>
+              <p className="text-sm text-neutral-400">
+                We don&apos;t share your email. Unsubscribe in one click.
+              </p>
             </div>
           </div>
-        </motion.div>
-
-        {/* Right - Space Topics Card */}
-        <motion.div
-          className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-royal to-lavender border border-white/10 hover:border-lavender/50 transition-all duration-300 hover:shadow-xl hover:shadow-lavender/10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <div
-            ref={grid2Container}
-            className="relative p-8 md:p-10 h-full min-h-[300px] flex items-center justify-center bg-[#0B0F2F]/50"
-          >
-            <div className="absolute inset-0 opacity-10">
-              <img
-                src="/assets/card-2.jpg"
-                alt=""
-                className="object-cover w-full h-full"
-              />
-            </div>
-            {[
-              "Dr. A.P.J. Abdul Kalam",
-              "Rakesh Sharma",
-              "Kalpana Chawla",
-              "Neil Armstrong",
-              "Buzz Aldrin",
-              "Yuri Gagarin",
-              "Valentina Tereshkova",
-              "Sally Ride",
-              "Vikram Sarabhai",
-              "Satish Dhawan",
-              "K. Radhakrishnan",
-              "K. Sivan"
-            ].map((text, index) => (
-              <Card
-                key={index}
-                style={{
-                  rotate: `${(index % 2 === 0 ? "" : "-")}${15 + index * 5}deg`,
-                  top: `${(index * 10) % 80}%`,
-                  left: `${(index * 12) % 80}%`
-                }}
-                text={text}
-                containerRef={grid2Container}
-              />
-            ))}
+          <div className="flex gap-3">
+            <Link
+              href="/news"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full vu-glass hover:bg-white/15 text-sm transition"
+            >
+              Latest news
+            </Link>
+            <Link
+              href="/iss"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-royal to-lavender text-white text-sm font-medium transition hover:shadow-lg hover:shadow-lavender/30"
+            >
+              Track ISS live
+            </Link>
           </div>
         </motion.div>
       </div>
-
-      {/* Section Divider */}
-      <div className="my-12 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
-      {/* CTA Section */}
-      <motion.div
-        className="flex flex-col sm:flex-row gap-4 items-center justify-between p-6 rounded-xl bg-gradient-to-br from-storm to-indigo border border-white/10"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-      >
-        <div>
-          <h3 className="text-xl font-bold text-white mb-2">Explore More</h3>
-          <p className="text-neutral-400">Discover space news, launches, and articles</p>
-        </div>
-        <div className="flex gap-3">
-          <Link
-            href="/news"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 rounded-lg bg-gradient-to-r from-royal to-lavender hover:from-lavender hover:to-royal hover:scale-105 hover:shadow-lg hover:shadow-lavender/50"
-          >
-            View News
-            <ExternalLink className="w-4 h-4" />
-          </Link>
-          <Link
-            href="/isro"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 rounded-lg border-2 border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/40 hover:scale-105"
-          >
-            ISRO Odyssey
-            <ExternalLink className="w-4 h-4" />
-          </Link>
-        </div>
-      </motion.div>
     </section>
   );
 };

@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { useDebounce } from "../hooks/useDebounce";
 import { highlightSearchTerm, searchItems } from "../utils/searchUtils";
+import BookmarkButton from "../components/BookmarkButton";
 
 const ArticleCard = ({ article, searchQuery }) => {
   const { img, author, title, excerpt, link, category, readingTime } = article;
@@ -98,13 +99,26 @@ const ArticleCard = ({ article, searchQuery }) => {
                   </span>
                 )}
               </div>
-              <button
-                onClick={handleShare}
-                className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-300 opacity-0 group-hover:opacity-100 flex-shrink-0"
-                title="Share article"
-              >
-                <Share2 className="w-3.5 h-3.5 text-white/70" />
-              </button>
+              <div className="flex gap-1 flex-shrink-0">
+                <BookmarkButton
+                  item={{
+                    id: `article-${article.id}`,
+                    type: "article",
+                    title,
+                    href: link,
+                    image: img,
+                  }}
+                  className="!p-1.5 opacity-0 group-hover:opacity-100"
+                />
+                <button
+                  onClick={handleShare}
+                  className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-300 opacity-0 group-hover:opacity-100"
+                  title="Share article"
+                  aria-label="Share article"
+                >
+                  <Share2 className="w-3.5 h-3.5 text-white/70" />
+                </button>
+              </div>
             </div>
 
             {/* Article Title */}
